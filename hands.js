@@ -25,3 +25,18 @@ function restartToNewQuestion() {
 function unselect(cell) {
     cell.classList.remove("selected");
 }
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'f' || event.key === 'F') {
+        document.getElementById('f').click();
+    }
+    if (event.key == " " ) {
+        event.preventDefault();
+        const doubleClickEvent = new MouseEvent('dblclick', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+        document.body.dispatchEvent(doubleClickEvent);
+    }
+});
