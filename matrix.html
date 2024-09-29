@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preflop trainer</title>
+</head>
+
+<body>
+
+    <div>
+        <h1 class="title">Preflop trainer</h1>
+        <div id="config-container">
+            <div class="config-selector table-toggle-container">
+                <span class="table-name">3H</span>
+                <div class="toggle">
+                    <input type="checkbox" id="table-toggle">
+                    <label for="table-toggle" class=""></label>
+                </div>
+                <span class="table-name">HU</span>
+            </div>
+            <div class="config-selector">
+                <select id="position" class="selector">
+                </select>
+            </div>
+            <div class="config-selector">
+                <select id="stack-size" class="selector">
+                    <option value="25">25 BB</option>
+                    <option value="20">20 BB</option>
+                    <option value="15">15 BB</option>
+                    <option value="12">12 BB</option>
+                    <option value="10">10 BB</option>
+                    <option value="8">8 BB</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="matrix" id="cardMatrix"></div>
+        <div class="study-container">
+            <p id="hand"></p>
+            <div class="actions-container">
+                <div class="actions-group">
+                    <button class="action os-paint" id="os">OS</button>
+                    <button class="action mr-4b-c-paint" id="mr-4b-c">MR/4B/C</button>
+                    <button class="action mr-c-c-paint" id="mr-c-c">MR/C/C</button>
+                    <button class="action mr-c-f-paint" id="mr-c-f">MR/C/F</button>
+                    <button class="action mr-f-f-paint" id="mr-f-f">MR/F/F</button>
+                </div>
+                <div class="actions-group">
+                    <button class="action l-push-paint" id="l-push">L/Push</button>
+                    <button class="action l-c-c-paint" id="l-c-c">L/C/C</button>
+                    <button class="action l-c-f-paint" id="l-c-f">L/C/F</button>
+                    <button class="action l-f-paint" id="l-f">L/F</button>
+                </div>
+                <div class="actions-group">
+                    <button class="action f-paint" style="color: black" id="f">Fold</button>
+                </div>
+            </div>
+            <div></div>
+            <div></div>
+            <div>
+                <button id="clear-all">clear</button>
+                <button id="show-all">show</button>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <!-- JSON para definir los colores de las combinaciones -->
+    <script type="text/javascript" src="./data/3h-btn.js"></script>
+    <script type="text/javascript" src="./data/3h-sb-bb.js"></script>
+    <script type="text/javascript" src="./data/hu-sb.js"></script>
+    <script type="text/javascript" src="./data/positions.js"></script>
+    <script>
+        let preflopTable = hands_3h_btn_25;
+
+        function paintClass(cell) {
+            return preflopTable.get(cell.id) + '-paint';
+        }
+
+        function show(cell) {
+            cell.classList.add(paintClass(cell));
+        }
+
+        function clear(cell) {
+            const color = cell.className.split(' ').filter(c => c.includes('paint'))
+            if (color.length > 0) cell.classList.remove(color)
+            unselect(cell);
+        }
+
+        function getStack() {
+            return document.getElementById("stack-size").value
+        }
+
+        function getPosition() {
+            return document.getElementById("position").value
+        }
+
+        function getTable() {
+            return document.getElementById("table-toggle").checked ? "hu" : "3h";
+        }
+
+        function getDataFile() {
+            return `hands_${getTable()}_${getPosition()}_${getStack()}`;
+        }
+
+        function repaint() {
+            document.getElementById('cardMatrix').childNodes.forEach(cell => {
+                if (isPainted(cell)) {
+                    clear(cell);
+                    show(cell);
+                }
+            });
+        }
+
+        function reloadPositions() {
+            const position = document.getElementById('position');
+            position.replaceChildren();
+            const dataPositions = eval(`positions_${getTable()}`)
+            dataPositions.forEach((text, key) => {
+                const option = document.createElement("option");
+                option.innerText = text;
+                option.value = key;
+                position.appendChild(option);
+            });
+            
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const cardMatrix = document.getElementById('cardMatrix');
+
+            function generateMatrix() {
+                preflopTable.forEach((action, hand) => {
+                    const cell = document.createElement('div');
+                    cell.classList.add('card-cell');
+                    cell.id = hand;
+                    cell.innerText = hand.slice(0, 2);
+
+                    cardMatrix.appendChild(cell);
+                })
+            };
+
+            generateMatrix();
+            reloadPositions();
+
+            let painting = { isDragging: false, action: null };
+            document.getElementById('hand').innerText = generateHand()
+            document.getElementById('hand').addEventListener('click', (e) => {
+                restartToNewQuestion()
+            })
+
+            Array.from(document.getElementsByClassName('action')).forEach(function (element) {
+                element.addEventListener('click', (e) => {
+                    clearAll();
+                    showAll();
+                    isCorrectAnswer(e.target.id == preflopTable.get(hand.innerText))
+                })
+            });
+
+            document.getElementById("stack-size").addEventListener("change", (e) => {
+                preflopTable = eval(getDataFile());
+                repaint()
+
+            });
+
+            document.getElementById("position").addEventListener("change", (e) => {
+                preflopTable = eval(getDataFile());
+                repaint();
+
+            });
+
+            document.getElementById("table-toggle").addEventListener("change", (e) => {
+                restartToNewQuestion();
+                reloadPositions();
+                preflopTable = eval(getDataFile());
+                
+            });
+        });
+
+
+    </script>
+    <script type="text/javascript" src="./cards.js"></script>
+    <script type="text/javascript" src="./hands.js"></script>
+    <script type="text/javascript" src="./paint-matrix.js"></script>
+    <link rel="stylesheet" href="matrix.css">
+    <link rel="stylesheet" href="actions.css">
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+.os-paint {
+    background-color: #b480dd;
+}
+
+.mr-4b-c-paint {
+    background-color: #c55b00;
+}
+
+.mr-c-c-paint {
+    background-color: #ff5a5a;
+}
+
+.mr-c-f-paint {
+    background-color: #ffb800;
+}
+
+.mr-f-f-paint {
+    background-color: #f6f780;
+}
+
+.l-push-paint {
+    background-color: #3bd385;
+}
+
+.l-c-c-paint {
+    background-color: #1afefe;
+}
+
+.l-c-f-paint {
+    background-color: #3791d8;
+}
+
+.l-f-paint {
+    background-color: #9b9b9b;
+}
+
+.f-paint {
+    color: transparent;
+    background-color: transparent;
+}

@@ -1,0 +1,153 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    user-select: none;
+}
+
+#config-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.config-selector {
+    margin: 0 20px 0 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.study-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 200px;
+    margin-left: 2em;
+    /* Espacio entre los botones */
+}
+
+.actions-container {
+    display: flex;
+    gap: 10px;
+}
+
+.actions-group {
+    display: block;
+}
+
+.title {
+    text-align: center;
+}
+
+.matrix {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 1px;
+    /* Espacio uniforme entre filas y columnas */
+    margin: auto;
+    margin-top: 20px;
+    width: 700px;
+}
+
+.card-cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+#clear-all {
+    margin-right: 2em;
+}
+
+.action {
+    width: 5em;
+    height: 2em;
+    margin-bottom: 0.5em;
+}
+
+#hand {
+    cursor: pointer;
+    font-size: xx-large;
+}
+
+.wrong-answer {
+    color: #FF474C;
+    font-weight: bold;
+}
+
+.correct-answer {
+    color: #74C25F;
+    font-weight: bold;
+}
+
+.matrix:has(.selected) *:not(.selected) {
+    opacity: 0.5;
+}
+
+.selected {
+    color: black;
+    font-weight: bolder;
+    box-shadow: inset 0px 0px 0px 2px black;
+    font-size: 1.1em;
+}
+
+
+.table-toggle-container {
+    display: flex;
+    float: left;
+    /* margin-right: 8em; */
+}
+
+.table-name {
+    padding: 5px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.toggle {
+    background: #eee;
+    width: 2.5em;
+    height: 1em;
+    padding: 5px;
+    border-radius: 50px;
+  }
+  
+  label {
+    width: 1em;
+    height: 1em;
+    background: aquamarine;
+    display: flex;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.25s ease 0s;
+  }
+  
+  input {
+    display: none;
+  }
+  
+  input:checked + label {
+    margin-left: 1.5em;
+  }
+
+  #position {
+    width: 100px;
+  }
+
+  .selector {
+    padding: 0.25em;
+    
+  }
