@@ -38,3 +38,36 @@
     color: transparent;
     background-color: transparent;
 }
+
+
+.action-answer {
+    width: 5em;
+    height: 2em;
+    margin-bottom: 0.5em;
+}
+
+#hand {
+    cursor: pointer;
+    font-size: xx-large;
+}
+
+.wrong-answer {
+    color: #FF474C;
+    font-weight: bold;
+}
+
+.correct-answer {
+    color: #74C25F;
+    font-weight: bold;
+}
+
+.matrix:has(.selected) *:not(.selected) {
+    opacity: 0.5;
+}
+
+.selected {
+    color: black;
+    font-weight: bolder;
+    box-shadow: inset 0px 0px 0px 2px black;
+    font-size: 1.1em;
+}

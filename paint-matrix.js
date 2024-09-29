@@ -17,6 +17,16 @@ function clearAll() {
     );
 }
 
+
+function repaint() {
+    document.getElementById('cardMatrix').childNodes.forEach(cell => {
+        if (isPainted(cell)) {
+            clear(cell);
+            show(cell);
+        }
+    });
+}
+
 function showAll() {
     Array.from(document.getElementsByClassName("card-cell")).forEach(cell => {
         show(cell)

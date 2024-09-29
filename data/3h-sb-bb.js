@@ -1,4 +1,4 @@
-const hands_3h_sb_bb_25 = new Map([
+const hands_3h_sb_25 = new Map([
     ["AA", "mr-4b-c"],
     ["AKs", "mr-4b-c"],
     ["AQs", "mr-4b-c"],
@@ -170,7 +170,7 @@ const hands_3h_sb_bb_25 = new Map([
     ["22", "os"]
 ]);
 
-const hands_3h_sb_bb_20 = new Map([
+const hands_3h_sb_20 = new Map([
     ["AA", "mr-4b-c"],
     ["AKs", "mr-4b-c"],
     ["AQs", "mr-4b-c"],
@@ -343,7 +343,7 @@ const hands_3h_sb_bb_20 = new Map([
 
 ])
 
-const hands_3h_sb_bb_15 = new Map([
+const hands_3h_sb_15 = new Map([
     ["AA", "mr-4b-c"],
     ["AKs", "mr-4b-c"],
     ["AQs", "mr-4b-c"],
@@ -515,7 +515,7 @@ const hands_3h_sb_bb_15 = new Map([
     ["22", "os"]
 ]);
 
-const hands_3h_sb_bb_12 = new Map([
+const hands_3h_sb_12 = new Map([
     ["AA", "mr-4b-c"],
     ["AKs", "mr-4b-c"],
     ["AQs", "mr-4b-c"],
@@ -688,7 +688,7 @@ const hands_3h_sb_bb_12 = new Map([
 
 ]);
 
-const hands_3h_sb_bb_10 = new Map([
+const hands_3h_sb_10 = new Map([
     ["AA", "mr-4b-c"],
     ["AKs", "mr-4b-c"],
     ["AQs", "mr-4b-c"],
@@ -860,8 +860,7 @@ const hands_3h_sb_bb_10 = new Map([
     ["22", "os"]
 ]);
 
-
-const hands_3h_sb_bb_8 = new Map([
+const hands_3h_sb_8 = new Map([
     ["AA", "mr-4b-c"],
     ["AKs", "os"],
     ["AQs", "os"],

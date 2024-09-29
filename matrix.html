@@ -12,29 +12,69 @@
     <div>
         <h1 class="title">Preflop trainer</h1>
         <div id="config-container">
-            <div class="config-selector table-toggle-container">
-                <span class="table-name">3H</span>
-                <div class="toggle">
-                    <input type="checkbox" id="table-toggle">
-                    <label for="table-toggle" class=""></label>
+            <div>
+                <div class="config-selector table-toggle-container">
+                    <span class="table-name">3H</span>
+                    <div class="toggle">
+                        <input type="checkbox" id="table-toggle">
+                        <label for="table-toggle" class=""></label>
+                    </div>
+                    <span class="table-name">HU</span>
                 </div>
-                <span class="table-name">HU</span>
+                <div class="config-selector">
+                    <select id="stack-size" class="selector">
+                        <option value="25">25 BB</option>
+                        <option value="20">20 BB</option>
+                        <option value="15">15 BB</option>
+                        <option value="12">12 BB</option>
+                        <option value="10">10 BB</option>
+                        <option value="8">8 BB</option>
+                    </select>
+                </div>
             </div>
-            <div class="config-selector">
-                <select id="position" class="selector">
-                </select>
+            <div id="config-selector-3h" class="config-selector actions-selector-container">
+                <div class="action-selector">
+                    <p class="position">Player</p>
+                    <div id="player-3h-position" class="menu">
+                        <div class="option active" value="btn">BTN</div>
+                        <div class="option" value="sb">SB</div>
+                        <div class="option" value="bb">BB</div>
+                    </div>
+                </div>
+                <div id="btn-3h-action-container" class="action-selector hidden">
+                    <p class="position">BTN</p>
+                    <div class="menu sub-menu" id="btn-3h-action">
+                        <div class="option" value="f">Fold</div>
+                        <div class="option" value="mr">Min-Raise</div>
+                        <div class="option" value="l">Limp</div>
+                    </div>
+                </div>
+                <div id="sb-3h-action-container" class="action-selector hidden">
+                    <p class="position">SB</p>
+                    <div class="menu sub-menu" id="sb-3h-action">
+                        <div class="option" value="f">Fold</div>
+                        <div class="option" value="3b">3bet | ISO</div>
+                        <div class="option" value="c">Call</div>
+                    </div>
+                </div>
             </div>
-            <div class="config-selector">
-                <select id="stack-size" class="selector">
-                    <option value="25">25 BB</option>
-                    <option value="20">20 BB</option>
-                    <option value="15">15 BB</option>
-                    <option value="12">12 BB</option>
-                    <option value="10">10 BB</option>
-                    <option value="8">8 BB</option>
-                </select>
+            <div id="config-selector-hu" class="config-selector actions-selector-container remove">
+                <div class="action-selector">
+                    <p class="position">Player</p>
+                    <div id="player-hu-position" class="menu">
+                        <div class="option active" value="sb">SB</div>
+                        <div class="option" value="bb">BB</div>
+                    </div>
+                </div>
+                <div id="sb-hu-action-container" class="action-selector hidden">
+                    <p class="position">SB</p>
+                    <div class="menu sub-menu" id="sb-hu-action">
+                        <div class="option" value="c">Call</div>
+                        <div class="option" value="3b">3bet | ISO</div>
+                        <div class="option" value="os">All In</div>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
     <div class="container">
@@ -43,20 +83,20 @@
             <p id="hand"></p>
             <div class="actions-container">
                 <div class="actions-group">
-                    <button class="action os-paint" id="os">OS</button>
-                    <button class="action mr-4b-c-paint" id="mr-4b-c">MR/4B/C</button>
-                    <button class="action mr-c-c-paint" id="mr-c-c">MR/C/C</button>
-                    <button class="action mr-c-f-paint" id="mr-c-f">MR/C/F</button>
-                    <button class="action mr-f-f-paint" id="mr-f-f">MR/F/F</button>
+                    <button class="action-answer os-paint" id="os">OS</button>
+                    <button class="action-answer mr-4b-c-paint" id="mr-4b-c">MR/4B/C</button>
+                    <button class="action-answer mr-c-c-paint" id="mr-c-c">MR/C/C</button>
+                    <button class="action-answer mr-c-f-paint" id="mr-c-f">MR/C/F</button>
+                    <button class="action-answer mr-f-f-paint" id="mr-f-f">MR/F/F</button>
                 </div>
                 <div class="actions-group">
-                    <button class="action l-push-paint" id="l-push">L/Push</button>
-                    <button class="action l-c-c-paint" id="l-c-c">L/C/C</button>
-                    <button class="action l-c-f-paint" id="l-c-f">L/C/F</button>
-                    <button class="action l-f-paint" id="l-f">L/F</button>
+                    <button class="action-answer l-push-paint" id="l-push">L/Push</button>
+                    <button class="action-answer l-c-c-paint" id="l-c-c">L/C/C</button>
+                    <button class="action-answer l-c-f-paint" id="l-c-f">L/C/F</button>
+                    <button class="action-answer l-f-paint" id="l-f">L/F</button>
                 </div>
                 <div class="actions-group">
-                    <button class="action f-paint" style="color: black" id="f">Fold</button>
+                    <button class="action-answer f-paint" style="color: black" id="f">Fold</button>
                 </div>
             </div>
             <div></div>
@@ -77,11 +117,33 @@
     <script type="text/javascript" src="./data/hu-sb.js"></script>
     <script type="text/javascript" src="./data/positions.js"></script>
     <script>
+
         let preflopTable = hands_3h_btn_25;
 
         function paintClass(cell) {
             return preflopTable.get(cell.id) + '-paint';
         }
+
+        function playerPosition() {
+            const selector = `#player-${getTable()}-position .option.active`;
+
+            const position = document.querySelectorAll(selector);
+            if (position.length == 0) return undefined;
+            return position[0].getAttribute("value");
+        }
+
+        function btnAction() {
+            const position = document.querySelectorAll("#btn-action .option.active");
+            if (position.length == 0) return undefined;
+            return position[0].getAttribute("value");
+        }
+
+        function sbAction() {
+            const position = document.querySelectorAll("#sb-action .option.active");
+            if (position.length == 0) return undefined;
+            return position[0].getAttribute("value");
+        }
+
 
         function show(cell) {
             cell.classList.add(paintClass(cell));
@@ -97,38 +159,51 @@
             return document.getElementById("stack-size").value
         }
 
-        function getPosition() {
-            return document.getElementById("position").value
+        function actionId(name) {
+            return name + '-' + getTable() + '-action';
         }
+
+        function containerId(name) {
+            return actionId(name) + '-container';
+        }
+
 
         function getTable() {
             return document.getElementById("table-toggle").checked ? "hu" : "3h";
         }
 
+        function asVarName(value) {
+            if (value == undefined || value == 'f') return '';
+            else return "_" + value;
+        }
+
         function getDataFile() {
-            return `hands_${getTable()}_${getPosition()}_${getStack()}`;
+            const position = playerPosition();
+            const btn = asVarName(btnAction());
+            const sb = asVarName(sbAction());
+            return `hands_${getTable()}_${position}${btn}${sb}_${getStack()}`;
         }
 
-        function repaint() {
-            document.getElementById('cardMatrix').childNodes.forEach(cell => {
-                if (isPainted(cell)) {
-                    clear(cell);
-                    show(cell);
-                }
-            });
+
+        function showFilter(name) {
+            const nameElement = containerId(name);
+            const element = document.getElementById(nameElement);
+            element.classList.remove("hidden");
         }
 
-        function reloadPositions() {
-            const position = document.getElementById('position');
-            position.replaceChildren();
-            const dataPositions = eval(`positions_${getTable()}`)
-            dataPositions.forEach((text, key) => {
-                const option = document.createElement("option");
-                option.innerText = text;
-                option.value = key;
-                position.appendChild(option);
-            });
-            
+        function hideFilter(name) {
+            const action = actionId(name);
+            const container = containerId(name);
+            const containerElement = document.getElementById(container);
+            containerElement.classList.add("hidden");
+
+            const actionsElements = document.querySelectorAll(`#${action} .option`);
+            actionsElements.forEach(o => o.classList.remove("active"));
+        }
+
+        function resetFilter(name) {
+            hideFilter(name);
+            showFilter(name);
         }
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -140,51 +215,89 @@
                     cell.classList.add('card-cell');
                     cell.id = hand;
                     cell.innerText = hand.slice(0, 2);
-
                     cardMatrix.appendChild(cell);
                 })
             };
 
             generateMatrix();
-            reloadPositions();
+
 
             let painting = { isDragging: false, action: null };
-            document.getElementById('hand').innerText = generateHand()
-            document.getElementById('hand').addEventListener('click', (e) => {
-                restartToNewQuestion()
-            })
-
-            Array.from(document.getElementsByClassName('action')).forEach(function (element) {
-                element.addEventListener('click', (e) => {
-                    clearAll();
-                    showAll();
-                    isCorrectAnswer(e.target.id == preflopTable.get(hand.innerText))
-                })
-            });
 
             document.getElementById("stack-size").addEventListener("change", (e) => {
-                preflopTable = eval(getDataFile());
-                repaint()
-
-            });
-
-            document.getElementById("position").addEventListener("change", (e) => {
                 preflopTable = eval(getDataFile());
                 repaint();
 
             });
 
+            const player3HPositions = document.querySelectorAll("#player-3h-position .option");
+            player3HPositions.forEach(option => {
+                option.addEventListener("click", () => {
+                    player3HPositions.forEach(o => o.classList.remove("active"));
+                    option.classList.add("active");
+
+                    resetFilter("btn");
+                    if (option.getAttribute("value") == "btn") {
+                        hideFilter("btn");
+                        console.log(getDataFile());
+                        preflopTable = eval(getDataFile());
+                        repaint();
+                    }
+                    hideFilter("sb");
+                });
+            });
+
+            const btn3HActions = document.querySelectorAll("#btn-3h-action-container .option");
+            btn3HActions.forEach(option => {
+                option.addEventListener("click", () => {
+                    btn3HActions.forEach(o => o.classList.remove("active"));
+                    option.classList.add("active");
+                    if (playerPosition() != 'bb') {
+                        preflopTable = eval(getDataFile());
+                        repaint();
+                    }
+                    else {
+                        resetFilter("sb");
+                    }
+                });
+            });
+
+            const sb3HActions = document.querySelectorAll("#sb-3h-action-container .option");
+            sb3HActions.forEach(option => {
+                option.addEventListener("click", () => {
+                    sb3HActions.forEach(o => o.classList.remove("active"));
+                    option.classList.add("active");
+                });
+            });
+
+            const playerHUPositions = document.querySelectorAll("#player-hu-position .option");
+            playerHUPositions.forEach(option => {
+                option.addEventListener("click", () => {
+                    playerHUPositions.forEach(o => o.classList.remove("active"));
+                    option.classList.add("active");
+
+                    resetFilter("sb");
+                    if (option.getAttribute("value") == "sb") {
+                        hideFilter("sb");
+                        console.log(getDataFile());
+                        preflopTable = eval(getDataFile());
+                        repaint();
+                    }
+                });
+            });
+
+
             document.getElementById("table-toggle").addEventListener("change", (e) => {
-                restartToNewQuestion();
-                reloadPositions();
-                preflopTable = eval(getDataFile());
-                
+                Array.from(document.getElementsByClassName("actions-selector-container")).forEach(el => el.classList.add("remove"))
+                const selector = `config-selector-${getTable()}`
+                document.getElementById(selector).classList.remove("remove");
             });
         });
 
 
     </script>
     <script type="text/javascript" src="./cards.js"></script>
+    <script type="text/javascript" src="./actions.js"></script>
     <script type="text/javascript" src="./hands.js"></script>
     <script type="text/javascript" src="./paint-matrix.js"></script>
     <link rel="stylesheet" href="matrix.css">

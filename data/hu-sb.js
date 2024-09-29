@@ -187,7 +187,6 @@ const hands_hu_sb_10 = new Map([
    
 ]);
 
-
 const hands_hu_sb_8 = new Map([
    
 ]);
