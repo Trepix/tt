@@ -3,43 +3,13 @@ body {
     user-select: none;
 }
 
-#config-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.config-selector {
-    margin: 0 20px 0 0;
-}
-
 .container {
     display: grid;
     grid-template-columns: auto 100px;
     justify-content: center;
     align-items: center;
-    gap: 20px;
 }
 
-.study-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    width: 200px;
-    margin-left: 2em;
-    /* Espacio entre los botones */
-}
-
-.actions-container {
-    display: flex;
-    gap: 10px;
-}
-
-.actions-group {
-    display: block;
-}
 
 .title {
     text-align: center;
@@ -65,13 +35,30 @@ body {
     user-select: none;
 }
 
+.lateral-panel {
+    margin-left: 2em;
+    height: 100%;
+    margin-top: 20px;
+    padding-top: 1em;
+    width: 350px;
+}
+
+.lateral-panel-block {
+    display: flex;
+}
+
+/* study */
+
 
 #clear-all {
     margin-right: 2em;
 }
 
+
+/* config selecotrs */
+
 .bb-selector {
-    margin-top: 2em;
+    margin-left: 2em;
 }
 
 .table-toggle-container {
@@ -112,10 +99,6 @@ input:checked+label {
     margin-left: 1.5em;
 }
 
-#position {
-    width: 100px;
-}
-
 .selector {
     padding: 0.25em;
 
@@ -131,7 +114,6 @@ input:checked+label {
 
 .actions-selector-container {
     display: flex;
-    width: 350px;
 }
 
 .position {

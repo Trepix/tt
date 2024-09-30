@@ -39,16 +39,18 @@
     background-color: transparent;
 }
 
-
 .action-answer {
-    width: 5em;
+    width: 5.5em;
+    border-width: 1px;
     height: 2em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.75em;
 }
 
 #hand {
     cursor: pointer;
+    padding: 1em 0 0 0;
     font-size: xx-large;
+    margin-left: 3em;
 }
 
 .wrong-answer {
@@ -70,4 +72,26 @@
     font-weight: bolder;
     box-shadow: inset 0px 0px 0px 2px black;
     font-size: 1.1em;
+}
+
+#question-container {
+    margin-top: 2em;
+    width: 250px;
+}
+
+.actions-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 2em;
+}
+
+.actions-group {
+    width: 33%;
+}
+
+#all-table-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    width: 100%;
 }
