@@ -24,12 +24,13 @@ body {
 }
 
 .card-cell {
+    font-size: larger;
     width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd;
+    border: 1px solid black;
     background-color: white;
     cursor: pointer;
     user-select: none;
@@ -84,7 +85,7 @@ body {
 label {
     width: 1em;
     height: 1em;
-    background: aquamarine;
+    background: #00b38f;
     display: flex;
     cursor: pointer;
     border-radius: 50px;
@@ -125,7 +126,7 @@ input:checked+label {
     display: inline-block;
     padding: 5px 5px 5px 10px;
     border-radius: 10px;
-    background-color: #ddd;
+    background-color: #eee;
     width: 4em;
     margin-right: 1em;
 }

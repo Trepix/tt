@@ -7,14 +7,19 @@ document.body.addEventListener('dblclick', (e) => {
 function isCorrectAnswer(answer) {
     const hand = document.getElementById('hand')
     document.getElementById(hand.innerText).classList.add("selected")
+    hand.classList.add(paintClass(preflopTable.get(hand.innerText)));
+
     if (answer) hand.classList.add("correct-answer")
     else hand.classList.add("wrong-answer")
 }
 
 function newQuestion() {
-    document.getElementById('hand').classList.remove("wrong-answer", "correct-answer")
+    const handElement = document.getElementById('hand')
     document.getElementById(hand.innerText).classList.remove("selected")
-    document.getElementById('hand').innerText = generateHand()
+
+    clearAction(handElement);
+    handElement.classList.remove("wrong-answer", "correct-answer")
+    handElement.innerText = generateHand()
 }
 
 function restartToNewQuestion() {
@@ -39,4 +44,16 @@ document.addEventListener('keydown', function(event) {
         });
         document.body.dispatchEvent(doubleClickEvent);
     }
+});
+
+document.getElementById('hand').innerText = generateHand()
+document.getElementById('hand').addEventListener('click', (e) => {
+    restartToNewQuestion()
+})
+
+Array.from(document.getElementsByClassName('action-answer')).forEach(function (element) {
+    element.addEventListener('click', (e) => {
+        showAll();
+        isCorrectAnswer(e.target.id == preflopTable.get(hand.innerText))
+    })
 });

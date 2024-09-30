@@ -82,8 +82,8 @@
                 </div>
             </div>
             <div id="question-container">
-                <span id="hand"></span>
-                <div class="actions-container">
+                <div id="hand"></div>
+                <div id="complete-actions-container" class="actions-container">
                     <div class="actions-group">
                         <button class="action-answer os-paint" id="os">OS</button>
                         <button class="action-answer mr-4b-c-paint" id="mr-4b-c">MR/4B/C</button>
@@ -101,13 +101,27 @@
                         <button class="action-answer f-paint" style="color: black" id="f">Fold</button>
                     </div>
                 </div>
-                <div id="all-table-actions">
-                    <button id="clear-all">clear</button>
-                    <button id="show-all">show</button>
+                <div id="simplified-actions-container" class="actions-container" style="display: none;">
+                    <div class="actions-group">
+                        <button class="action-answer os-paint" id="all-in">All In</button>
+                        <button class="action-answer mr-4b-c-paint" id="iso-c">3B/CALL</button>
+                        <button class="action-answer mr-c-c-paint" id="c">CALL</button>
+                    </div>
+                    <div class="actions-group">
+                        <button class="action-answer l-push-paint" id="iso-f">MR/F</button>
+                        <button class="action-answer l-c-c-paint" id="call-x2">CALL vs x2</button>
+                    </div>
+                    <div class="actions-group">
+                        <button class="action-answer f-paint" style="color: black" id="f">Fold</button>
+                    </div>
                 </div>
+            <div id="all-table-actions">
+                <button id="clear-all">clear</button>
+                <button id="show-all">show</button>
             </div>
-            
         </div>
+
+    </div>
     </div>
     </div>
 
@@ -118,58 +132,35 @@
     <script type="text/javascript" src="./data/3h-btn.js"></script>
     <script type="text/javascript" src="./data/3h-sb-bb.js"></script>
     <script type="text/javascript" src="./data/hu-sb.js"></script>
-    <script type="text/javascript" src="./data/positions.js"></script>
     <script>
 
         let preflopTable = hands_3h_btn_25;
 
-        function paintClass(cell) {
-            return preflopTable.get(cell.id) + '-paint';
+        function paintClassCell(cell) {
+            return paintClass(preflopTable.get(cell.id));
         }
 
-        function playerPosition() {
-            const selector = `#player-${getTable()}-position .option.active`;
-
-            const position = document.querySelectorAll(selector);
-            if (position.length == 0) return undefined;
-            return position[0].getAttribute("value");
+        function paintClass(action) {
+            return action + '-paint';
         }
-
-        function btnAction() {
-            const position = document.querySelectorAll("#btn-action .option.active");
-            if (position.length == 0) return undefined;
-            return position[0].getAttribute("value");
-        }
-
-        function sbAction() {
-            const position = document.querySelectorAll("#sb-action .option.active");
-            if (position.length == 0) return undefined;
-            return position[0].getAttribute("value");
-        }
-
 
         function show(cell) {
-            cell.classList.add(paintClass(cell));
+            cell.classList.add(paintClassCell(cell));
         }
 
-        function clear(cell) {
-            const color = cell.className.split(' ').filter(c => c.includes('paint'))
-            if (color.length > 0) cell.classList.remove(color)
-            unselect(cell);
+        function clearAction(element) {
+            const color = element.className.split(' ').filter(c => c.includes('paint'))
+            if (color.length > 0) element.classList.remove(color)
+        }
+
+        function clear(element) {
+            clearAction(element);
+            unselect(element);
         }
 
         function getStack() {
             return document.getElementById("stack-size").value
         }
-
-        function actionId(name) {
-            return name + '-' + getTable() + '-action';
-        }
-
-        function containerId(name) {
-            return actionId(name) + '-container';
-        }
-
 
         function getTable() {
             return document.getElementById("table-toggle").checked ? "hu" : "3h";
@@ -180,6 +171,11 @@
             else return "_" + value;
         }
 
+        function reloadMatrix() {
+            preflopTable = eval(getDataFile());
+            repaint();
+        }
+
         function getDataFile() {
             const position = playerPosition();
             const btn = asVarName(btnAction());
@@ -188,26 +184,7 @@
         }
 
 
-        function showFilter(name) {
-            const nameElement = containerId(name);
-            const element = document.getElementById(nameElement);
-            element.classList.remove("hidden");
-        }
 
-        function hideFilter(name) {
-            const action = actionId(name);
-            const container = containerId(name);
-            const containerElement = document.getElementById(container);
-            containerElement.classList.add("hidden");
-
-            const actionsElements = document.querySelectorAll(`#${action} .option`);
-            actionsElements.forEach(o => o.classList.remove("active"));
-        }
-
-        function resetFilter(name) {
-            hideFilter(name);
-            showFilter(name);
-        }
 
         document.addEventListener('DOMContentLoaded', function () {
             const cardMatrix = document.getElementById('cardMatrix');
@@ -228,81 +205,24 @@
             let painting = { isDragging: false, action: null };
 
             document.getElementById("stack-size").addEventListener("change", (e) => {
-                preflopTable = eval(getDataFile());
-                repaint();
+                reloadMatrix();
 
             });
-
-            const player3HPositions = document.querySelectorAll("#player-3h-position .option");
-            player3HPositions.forEach(option => {
-                option.addEventListener("click", () => {
-                    player3HPositions.forEach(o => o.classList.remove("active"));
-                    option.classList.add("active");
-
-                    resetFilter("btn");
-                    if (option.getAttribute("value") == "btn") {
-                        hideFilter("btn");
-                        console.log(getDataFile());
-                        preflopTable = eval(getDataFile());
-                        repaint();
-                    }
-                    hideFilter("sb");
-                });
-            });
-
-            const btn3HActions = document.querySelectorAll("#btn-3h-action-container .option");
-            btn3HActions.forEach(option => {
-                option.addEventListener("click", () => {
-                    btn3HActions.forEach(o => o.classList.remove("active"));
-                    option.classList.add("active");
-                    if (playerPosition() != 'bb') {
-                        preflopTable = eval(getDataFile());
-                        repaint();
-                    }
-                    else {
-                        resetFilter("sb");
-                    }
-                });
-            });
-
-            const sb3HActions = document.querySelectorAll("#sb-3h-action-container .option");
-            sb3HActions.forEach(option => {
-                option.addEventListener("click", () => {
-                    sb3HActions.forEach(o => o.classList.remove("active"));
-                    option.classList.add("active");
-                });
-            });
-
-            const playerHUPositions = document.querySelectorAll("#player-hu-position .option");
-            playerHUPositions.forEach(option => {
-                option.addEventListener("click", () => {
-                    playerHUPositions.forEach(o => o.classList.remove("active"));
-                    option.classList.add("active");
-
-                    resetFilter("sb");
-                    if (option.getAttribute("value") == "sb") {
-                        hideFilter("sb");
-                        console.log(getDataFile());
-                        preflopTable = eval(getDataFile());
-                        repaint();
-                    }
-                });
-            });
-
 
             document.getElementById("table-toggle").addEventListener("change", (e) => {
                 Array.from(document.getElementsByClassName("actions-selector-container")).forEach(el => el.classList.add("remove"))
                 const selector = `config-selector-${getTable()}`
                 document.getElementById(selector).classList.remove("remove");
+                reloadMatrix();
             });
         });
 
 
     </script>
     <script type="text/javascript" src="./cards.js"></script>
-    <script type="text/javascript" src="./actions.js"></script>
     <script type="text/javascript" src="./hands.js"></script>
     <script type="text/javascript" src="./paint-matrix.js"></script>
+    <script type="text/javascript" src="./players.js"></script>
     <link rel="stylesheet" href="matrix.css">
     <link rel="stylesheet" href="actions.css">
 
