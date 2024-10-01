@@ -88,14 +88,19 @@ function playerPosition() {
     return position[0].getAttribute("value");
 }
 
+function asVarName(element, prefix) {
+    if (element.length == 0) return '';
+    const value = element[0].getAttribute("value")
+    if (value == 'f') return '';
+    else return prefix + element[0].getAttribute("value");
+}
+
 function btnAction() {
-    const position = document.querySelectorAll("#btn-action .option.active");
-    if (position.length == 0) return undefined;
-    return position[0].getAttribute("value");
+    const position = document.querySelectorAll("#btn-3h-action .option.active");
+    return asVarName(position, '_btn_');
 }
 
 function sbAction() {
-    const position = document.querySelectorAll("#sb-action .option.active");
-    if (position.length == 0) return undefined;
-    return position[0].getAttribute("value");
+    const position = document.querySelectorAll("#sb-3h-action .option.active");
+    return asVarName(position, '_sb_');
 }

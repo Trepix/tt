@@ -166,20 +166,19 @@
             return document.getElementById("table-toggle").checked ? "hu" : "3h";
         }
 
-        function asVarName(value) {
-            if (value == undefined || value == 'f') return '';
-            else return "_" + value;
-        }
-
         function reloadMatrix() {
-            preflopTable = eval(getDataFile());
+            try {
+                preflopTable = eval(getDataFile());
+            } catch (e) {
+                console.log(getDataFile() + " table does not exist");
+            }
             repaint();
         }
 
         function getDataFile() {
             const position = playerPosition();
-            const btn = asVarName(btnAction());
-            const sb = asVarName(sbAction());
+            const btn = btnAction();
+            const sb = sbAction();
             return `hands_${getTable()}_${position}${btn}${sb}_${getStack()}`;
         }
 
@@ -222,7 +221,7 @@
     <script type="text/javascript" src="./cards.js"></script>
     <script type="text/javascript" src="./hands.js"></script>
     <script type="text/javascript" src="./paint-matrix.js"></script>
-    <script type="text/javascript" src="./players.js"></script>
+    <script type="text/javascript" src="./players-actions.js"></script>
     <link rel="stylesheet" href="matrix.css">
     <link rel="stylesheet" href="actions.css">
 
