@@ -53,16 +53,31 @@
                                 <div class="option" value="l">Limp</div>
                             </div>
                         </div>
-                        <div id="sb-3h-action-container" class="action-selector hidden">
+                        <div id="sb-3h-btn-mr-action-container" class="action-selector hidden">
                             <p class="position">SB</p>
-                            <div class="menu sub-menu" id="sb-3h-action">
+                            <div class="menu sub-menu" id="sb-3h-btn-mr-action">
                                 <div class="option" value="f">Fold</div>
-                                <div class="option" value="3b">3bet | ISO</div>
+                                <div class="option" value="3b">3bet</div>
                                 <div class="option" value="c">Call</div>
                             </div>
                         </div>
+                        <div id="sb-3h-btn-l-action-container" class="action-selector hidden">
+                            <p class="position">SB</p>
+                            <div class="menu sub-menu" id="sb-3h-btn-l-action">
+                                <div class="option" value="f">Fold</div>
+                                <div class="option" value="3b">ISO</div>
+                                <div class="option" value="c">Call</div>
+                            </div>
+                        </div>
+                        <div id="sb-3h-action-container" class="action-selector hidden">
+                            <p class="position">SB</p>
+                            <div class="menu sub-menu" id="sb-3h-action">
+                                <div class="option" value="l">Limp</div>
+                                <div class="option" value="mr">Min-Raise</div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="config-selector-hu" class="config-selector actions-selector-container remove">
+                    <div id="config-selector-hu" class="config-selector actions-selector-container hidden">
                         <div class="action-selector">
                             <p class="position">Player</p>
                             <div id="player-hu-position" class="menu">
@@ -73,8 +88,8 @@
                         <div id="sb-hu-action-container" class="action-selector hidden">
                             <p class="position">SB</p>
                             <div class="menu sub-menu" id="sb-hu-action">
-                                <div class="option" value="c">Call</div>
-                                <div class="option" value="3b">3bet | ISO</div>
+                                <div class="option" value="l">Limp</div>
+                                <div class="option" value="mr">Min-Raise</div>
                                 <div class="option" value="os">All In</div>
                             </div>
                         </div>
@@ -209,9 +224,9 @@
             });
 
             document.getElementById("table-toggle").addEventListener("change", (e) => {
-                Array.from(document.getElementsByClassName("actions-selector-container")).forEach(el => el.classList.add("remove"))
+                Array.from(document.getElementsByClassName("actions-selector-container")).forEach(el => el.classList.add("hidden"))
                 const selector = `config-selector-${getTable()}`
-                document.getElementById(selector).classList.remove("remove");
+                document.getElementById(selector).classList.remove("hidden");
                 reloadMatrix();
             });
         });

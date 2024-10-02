@@ -106,10 +106,6 @@ input:checked+label {
 }
 
 .hidden {
-    visibility: hidden;
-}
-
-.remove {
     display: none !important;
 }
 

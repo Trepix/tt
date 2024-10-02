@@ -35,6 +35,12 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'f' || event.key === 'F') {
         document.getElementById('f').click();
     }
+    if (event.key === 'c' || event.key === 'C') {
+        document.getElementById('clear-all').click();
+    }
+    if (event.key === 's' || event.key === 'S') {
+        document.getElementById('show-all').click();
+    }
     if (event.key == " " ) {
         event.preventDefault();
         const doubleClickEvent = new MouseEvent('dblclick', {
