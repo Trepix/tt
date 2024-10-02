@@ -142,3 +142,29 @@ input:checked+label {
     background-color: #00b38f;
     border-radius: 5px;
 }
+
+@media (max-width: 768px) {
+
+    body {
+        font-size: 1em;
+    }
+
+    .matrix {
+        display: none;
+    }
+
+    .container {
+        display: flex;   
+    }
+
+    .lateral-panel {
+        
+        margin: auto;
+        width: 350px;
+        align-content: center;
+        justify-items: center;
+    }
+
+
+
+}

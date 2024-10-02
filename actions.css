@@ -65,7 +65,7 @@
 
 .correct-answer {
     box-shadow: 0px 0px 0px 3px #74C25F;
-    
+
 }
 
 .matrix:has(.selected) *:not(.selected) {
@@ -99,4 +99,38 @@
     justify-content: center;
     margin-top: 2em;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    #question-container {
+        width: auto;
+        display: flow;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #hand {
+        margin: 1em auto;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .action-answer {
+        width: 100%;
+        border-width: 1px;
+        height: 2em;
+        margin-bottom: 0.75em;
+        border-radius: 5px;
+        font-size: large;
+    }
+
+    .actions-group {
+        margin: 0 0.5em;
+    }
+
+    #clear-all,#show-all {
+        display: none;
+    }
+
 }
