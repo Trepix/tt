@@ -49,13 +49,15 @@ sb3HActions.forEach(option => {
 const playerHUPositions = document.querySelectorAll("#player-hu-position .option");
 playerHUPositions.forEach(option => {
     option.addEventListener("click", () => {
+        playerHUPositions.forEach(o => o.classList.remove("active"));
+        option.classList.add("active");
+
         resetFilter(sbActionKey());
         if (option.getAttribute("value") == "sb") {
             hideFilter(sbActionKey());
             reloadMatrix();
         }
-        playerHUPositions.forEach(o => o.classList.remove("active"));
-        option.classList.add("active");
+        
     });
 });
 
@@ -76,6 +78,7 @@ function showFilter(name) {
 function hideFilter(name) {
     const container = containerId(name);
     const containerElement = document.getElementById(container);
+    console.log(`$${name}$`);
     containerElement.classList.add("hidden");
     clearFilter(actionId(name)); 
 }
@@ -137,11 +140,11 @@ function sbActionKey() {
         return 'sb-3h' + asSelectorName(btnActionValue , "btn");
     }
     else {
-        return 'sb-hu'
+        return 'sb-hu';
     }
 }
 
 function sbAction() {
-    const action = selectorActionValue('[id^="sb-3h"][id$="action-container"]');
+    const action = selectorActionValue(`[id^="sb-${getTable()}"][id$="action-container"]`);
     return asVarName(action, 'sb');
 }
