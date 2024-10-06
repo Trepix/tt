@@ -16,7 +16,7 @@
         <div class="matrix" id="cardMatrix"></div>
         <div class="lateral-panel">
             <div id="config-container">
-                <div class="lateral-panel-block">
+                <div id="situation-config" class="lateral-panel-block">
                     <div class="config-selector table-toggle-container"></div>
                     <span class="table-name">3H</span>
                     <div class="toggle">
@@ -35,9 +35,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="lateral-panel-block">
+                <div id="actions-config" class="lateral-panel-block">
                     <div id="config-selector-3h" class="config-selector actions-selector-container">
-                        <div class="action-selector">
+                        <div id="player-3h-position-container" class="action-selector">
                             <p class="position">Player</p>
                             <div id="player-3h-position" class="menu">
                                 <div class="option active" value="btn">BTN</div>
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div id="config-selector-hu" class="config-selector actions-selector-container hidden">
-                        <div class="action-selector">
+                        <div class="action-selector" id="player-hu-position-container">
                             <p class="position">Player</p>
                             <div id="player-hu-position" class="menu">
                                 <div class="option active" value="sb">SB</div>
@@ -170,7 +170,7 @@
 
         function clear(element) {
             clearAction(element);
-            unselect(element);
+            // unselect(element);
         }
 
         function getStack() {
