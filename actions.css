@@ -101,6 +101,10 @@
     width: 100%;
 }
 
+#show-table {
+    display: none;
+}
+
 @media (max-width: 768px) {
     #question-container {
         width: auto;
@@ -129,8 +133,24 @@
         margin: 0 0.5em;
     }
 
-    #clear-all,#show-all {
+    #clear-all,#print-all {
         display: none;
+    }
+
+    #mobile-actions-footer {
+        width: 95%;
+    }
+
+    .selected {
+        box-shadow: inset 0px 0px 0px 2px black;
+    }
+
+    #show-table {
+        display: block;
+        width: 40%;
+        height: 3em;
+        margin: auto;
+        margin-top: 3em;
     }
 
 }

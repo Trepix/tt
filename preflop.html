@@ -13,8 +13,8 @@
         <h1 class="title">Preflop trainer</h1>
     </div>
     <div class="container">
-        <div class="matrix" id="cardMatrix"></div>
-        <div class="lateral-panel">
+        <div class="matrix" id="card-matrix"></div>
+        <div id="lateral-panel">
             <div id="config-container">
                 <div id="situation-config" class="lateral-panel-block">
                     <div class="config-selector table-toggle-container"></div>
@@ -130,17 +130,15 @@
                         <button class="action-answer f-paint" style="color: black" id="f">Fold</button>
                     </div>
                 </div>
-            <div id="all-table-actions">
-                <button id="clear-all">clear</button>
-                <button id="show-all">show</button>
+                <div id="all-table-actions">
+                    <button id="clear-all">clear</button>
+                    <button id="print-all">show</button>
+                </div>
             </div>
         </div>
-
     </div>
-    </div>
-    </div>
-
-
+    <div id="mobile-actions-footer">
+        <button id="show-table">Show table</button>
     </div>
 
     <!-- JSON para definir los colores de las combinaciones -->
@@ -201,7 +199,7 @@
 
 
         document.addEventListener('DOMContentLoaded', function () {
-            const cardMatrix = document.getElementById('cardMatrix');
+            const cardMatrix = document.getElementById('card-matrix');
 
             function generateMatrix() {
                 preflopTable.forEach((action, hand) => {
@@ -237,6 +235,7 @@
     <script type="text/javascript" src="./hands.js"></script>
     <script type="text/javascript" src="./paint-matrix.js"></script>
     <script type="text/javascript" src="./players-actions.js"></script>
+    <script type="text/javascript" src="./show-matrix.js"></script>
     <link rel="stylesheet" href="matrix.css">
     <link rel="stylesheet" href="actions.css">
 

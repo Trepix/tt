@@ -88,14 +88,14 @@
     <div>
         <h1 class="title">Matriz de Combinaciones de Cartas</h1>
         <div class="container">
-            <div class="matrix" id="cardMatrix"></div>
+            <div class="matrix" id="card-matrix"></div>
             <div class="study-container">
                 <p id="hand"></p>
                 <button id="show-hand">solve</button>
                 <div></div>
                 <div></div>
                 <button id="clear-all">clear</button>
-                <button id="show-all">show</button>
+                <button id="print-all">show</button>
             </div>
         </div>
 
@@ -289,7 +289,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            const cardMatrix = document.getElementById('cardMatrix');
+            const cardMatrix = document.getElementById('card-matrix');
             function getBBColor(bbValue) {
                 // Asegurarnos de que el valor esté entre 1 y 20
                 if (bbValue >= 19.9) return 'hsl(120, 50%, 50%)'

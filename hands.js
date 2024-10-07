@@ -39,7 +39,7 @@ document.addEventListener('keydown', function(event) {
         document.getElementById('clear-all').click();
     }
     if (event.key === 's' || event.key === 'S') {
-        document.getElementById('show-all').click();
+        document.getElementById('print-all').click();
     }
     if (event.key == " " ) {
         event.preventDefault();

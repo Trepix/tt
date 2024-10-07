@@ -6,32 +6,18 @@ const Actions = Object.freeze({
     CLEAR: 1
 });
 
-const table = document.getElementById('cardMatrix');
+const table = document.getElementById('card-matrix');
 
 let painting = { isDragging: false, action: null };
 
-function clearAll() {
-    Array.from(document.getElementsByClassName("card-cell")).forEach(cell => {
-        clear(cell)
-    }
-    );
-}
-
 
 function repaint() {
-    document.getElementById('cardMatrix').childNodes.forEach(cell => {
+    document.getElementById('card-matrix').childNodes.forEach(cell => {
         if (isPainted(cell)) {
             clear(cell);
             show(cell);
         }
     });
-}
-
-function showAll() {
-    Array.from(document.getElementsByClassName("card-cell")).forEach(cell => {
-        show(cell)
-    }
-    );
 }
 
 function isPainted(cell) {
@@ -78,10 +64,24 @@ table.addEventListener('mouseover', (e) => {
     }
 });
 
+
+function clearAll() {
+    Array.from(document.getElementsByClassName("card-cell")).forEach(cell => {
+        clear(cell)
+    });
+}
+
+function showAll() {
+    Array.from(document.getElementsByClassName("card-cell")).forEach(cell => {
+        show(cell)
+    }
+    );
+}
+
 document.getElementById('clear-all').addEventListener('click', (e) => {
     clearAll();
 });
 
-document.getElementById('show-all').addEventListener('click', (e) => {
+document.getElementById('print-all').addEventListener('click', (e) => {
     showAll()
 });

@@ -1,7 +1,7 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     user-select: none;
-    height: 100vh;
+    height: 95vh;
 }
 
 .container {
@@ -37,7 +37,7 @@ body {
     user-select: none;
 }
 
-.lateral-panel {
+#lateral-panel {
     margin-left: 2em;
     height: 100%;
     margin-top: 20px;
@@ -154,6 +154,7 @@ input:checked+label {
     }
 
     .matrix {
+        font-family: "Courier New", Courier, monospace;
         display: none;
     }
 
@@ -161,11 +162,31 @@ input:checked+label {
         display: flex;   
     }
 
-    .lateral-panel {
+    #lateral-panel {
         margin: auto;
-        width: 350px;
+        width: 100%;
         justify-items: center;
     }
 
+    #actions-config {
+        max-width: 21em;
+        overflow: hidden;
+        margin: auto;
+    }
+
+    #situation-config {
+        max-width: 21em;
+        overflow: hidden;
+        margin: auto;
+        margin-bottom: 1em;
+    }
+
+    .card-cell {
+        width: calc(96vw / 13);
+        height: calc(96vw / 13);
+        border: none;
+    }
+
+    
 
 }

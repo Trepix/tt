@@ -101,7 +101,7 @@
             cell.addEventListener('mousedown', (e) => {
                 isMouseDown = true;
                 toggleCellColor(cell);
-                e.preventDefault(); // Previene la selección de texto
+                e.preventDefault();
             });
             cell.addEventListener('mouseenter', () => {
                 if (isMouseDown) {
