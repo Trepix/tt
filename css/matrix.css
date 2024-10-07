@@ -153,6 +153,11 @@ input:checked+label {
         font-size: 1em;
     }
 
+    .title {
+        display: none;
+    }
+    
+
     .matrix {
         font-family: "Courier New", Courier, monospace;
         display: none;
