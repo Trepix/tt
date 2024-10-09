@@ -1,9 +1,3 @@
-document.body.addEventListener('dblclick', (e) => {
-    const handClasses = document.getElementById('hand').classList;
-    const isAnswered = handClasses.contains("correct-answer") || handClasses.contains("wrong-answer")
-    if (isAnswered) restartToNewQuestion()
-})
-
 function isCorrectAnswer(answer) {
     const hand = document.getElementById('hand')
     document.getElementById(hand.innerText).classList.add("selected")
@@ -31,17 +25,35 @@ function unselect(cell) {
     cell.classList.remove("selected");
 }
 
-document.addEventListener('keydown', function(event) {
+function clickAnswer(value) {
+    const maybeElement = document.querySelectorAll(`.actions-answer-container:not(.hidden) .action-answer[value="${value}"]`);
+    if (maybeElement.length > 0) maybeElement[0].click();  
+}
+
+
+document.addEventListener('keydown', function (event) {
     if (event.key === 'f' || event.key === 'F') {
-        document.getElementById('f').click();
+        clickAnswer("f");
+    }
+    if (event.key === 'x' || event.key === 'X') {
+        clickAnswer("x");
     }
     if (event.key === 'c' || event.key === 'C') {
+        clickAnswer("c");
+        clickAnswer("x");
+    }
+    if (event.key === 'a' || event.key === 'A') {
+        clickAnswer("all-in");
+        clickAnswer("os");
+    }
+    if (event.key === 'r' || event.key === 'R') {
         document.getElementById('clear-all').click();
     }
     if (event.key === 's' || event.key === 'S') {
         document.getElementById('print-all').click();
     }
-    if (event.key == " " ) {
+    
+    if (event.key == " ") {
         event.preventDefault();
         const doubleClickEvent = new MouseEvent('dblclick', {
             bubbles: true,
@@ -59,8 +71,8 @@ function getAnswerContainer(group) {
 function reloadQuestionContainer() {
     const answers = document.querySelectorAll(`[id$="actions-answer-container"]`);
     answers.forEach(a => a.classList.add("hidden"));
-    
-    const group = getDataFile().split('_').slice(2,-1).join("-")
+
+    const group = getDataFile().split('_').slice(2, -1).join("-")
     const container = getAnswerContainer(group)
 
     if (container != undefined) {
@@ -73,6 +85,12 @@ document.getElementById('hand').innerText = generateHand();
 document.getElementById('hand').addEventListener('click', (e) => {
     restartToNewQuestion()
 });
+
+document.body.addEventListener('dblclick', (e) => {
+    const handClasses = document.getElementById('hand').classList;
+    const isAnswered = handClasses.contains("correct-answer") || handClasses.contains("wrong-answer")
+    if (isAnswered) restartToNewQuestion()
+})
 
 Array.from(document.getElementsByClassName('action-answer')).forEach(function (element) {
     element.addEventListener('click', (e) => {

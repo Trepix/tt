@@ -10,7 +10,7 @@
             display: grid;
             grid-template-columns: repeat(13, 1fr);
             gap: 2px;
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -183,8 +183,34 @@
                     document.getElementById('lf').click();
                     break;
                 default:
+                    if (event.metaKey && (event.key == 'c' || event.key == 'C')) exportGrid();
             }
         });
+
+
+        function exportGrid() {
+            const pokerGrid = document.querySelectorAll("#pokerGrid .cell");
+
+            const colorMap = {
+                "rgb(180, 128, 221)": "os",  // Purple color for os
+                "rgb(255, 184, 0)": "3bet-c",
+                "rgb(59, 211, 133)": "c",    // Green color for c
+                "rgb(55, 145, 216)": "c-x2"  // Blue color for c-x2
+            };
+
+            let result = "";
+
+            pokerGrid.forEach(cell => {
+                const hand = cell.textContent.trim();
+                const bgColor = cell.style.backgroundColor;
+
+                const action = colorMap[bgColor] != undefined ? colorMap[bgColor] : "f"
+                result += `["${hand}", "${action}"],\n`;
+            });
+
+            navigator.clipboard.writeText(result);
+
+        }
 
     </script>
 </body>

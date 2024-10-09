@@ -26,6 +26,7 @@
     background-color: #1afefe;
 }
 
+.c-x2-paint,
 .l-c-f-paint {
     background-color: #3791d8;
 }
@@ -43,11 +44,13 @@
     background-color: #b480dd;
 }
 
+.x-paint,
 .l-paint,
 .c-paint {
     background-color: #3bd385;
 }
 
+._3bet-c-paint,
 .iso-c-paint {
     background-color: #ffb800;
 }
