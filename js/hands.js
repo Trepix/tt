@@ -77,6 +77,7 @@ function groupSimilarActions(group) {
         case "3h-bb-btn-mr":
         case "3h-bb-btn-mr-sb-3bet":
         case "3h-bb-btn-mr-sb-c":
+        case "hu-bb-sb-mr":
             return "3h-sb-btn-mr"
         default:
             return group;
