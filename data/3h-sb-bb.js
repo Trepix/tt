@@ -34,7 +34,7 @@ const hands_3h_sb_25 = new Map([
     ["Q8s", "l-c-f"],
     ["Q7s", "l-c-f"],
     ["Q6s", "l-c-f"],
-    ["Q5s", "l-f"],
+    ["Q5s", "l-c-f"],
     ["Q4s", "l-f"],
     ["Q3s", "l-f"],
     ["Q2s", "l-f"],

@@ -109,6 +109,7 @@ input:checked+label {
 
 .actions-selector-container {
     display: flex;
+    height: 9.5em;
 }
 
 .position {

@@ -57,7 +57,7 @@
                             <p class="position">SB</p>
                             <div class="menu sub-menu" id="sb-3h-btn-mr-action">
                                 <div class="option" value="f">Fold</div>
-                                <div class="option" value="3b-call">3bet</div>
+                                <div class="option" value="3bet">3bet</div>
                                 <div class="option" value="c">Call</div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                 <div class="option" value="bb">BB</div>
                             </div>
                         </div>
-                        <div id="sb-hu-action-container" class="action-selector hidden">
+                        <div class="action-selector hidden" id="sb-hu-action-container">
                             <p class="position">SB</p>
                             <div class="menu sub-menu" id="sb-hu-action">
                                 <div class="option" value="l">Limp</div>
@@ -118,7 +118,7 @@
                             <button class="action-answer f-paint" style="color: black" value="f">Fold</button>
                         </div>
                     </div>
-                    <div id="sb-btn-mr-actions-answer-container" class="actions-answer-container hidden">
+                    <div id="3h-sb-btn-mr-actions-answer-container" class="actions-answer-container hidden">
                         <div class="actions-group">
                             <button class="action-answer all-in-paint" value="all-in">All In</button>
                             <button class="action-answer _3bet-c-paint" value="_3bet-c">3BET/C</button>
@@ -128,7 +128,7 @@
                             <button class="action-answer f-paint" style="color: black" value="f">Fold</button>
                         </div>
                     </div>
-                    <div id="sb-btn-l-actions-answer-container" class="actions-answer-container hidden">
+                    <div id="3h-sb-btn-l-actions-answer-container" class="actions-answer-container hidden">
                         <div class="actions-group">
                             <button class="action-answer all-in-paint" value="all-in">All In</button>
                             <button class="action-answer iso-c-paint" value="iso-c">ISO/C</button>
@@ -139,7 +139,7 @@
                             <button class="action-answer f-paint" style="color: black" value="f">Fold</button>
                         </div>
                     </div>
-                    <div id="bb-sb-mr-actions-answer-container" class="actions-answer-container hidden">
+                    <div id="3h-bb-sb-mr-actions-answer-container" class="actions-answer-container hidden">
                         <div class="actions-group">
                             <button class="action-answer all-in-paint" value="all-in">All In</button>
                             <button class="action-answer _3bet-c-paint" value="_3bet-c">3BET/C</button>
@@ -150,10 +150,10 @@
                             <button class="action-answer f-paint" style="color: black" value="f">Fold</button>
                         </div>
                     </div>
-                    <div id="bb-sb-l-actions-answer-container" class="actions-answer-container hidden">
+                    <div id="3h-bb-sb-l-actions-answer-container" class="actions-answer-container hidden">
                         <div class="actions-group">
                             <button class="action-answer all-in-paint" value="all-in">All In</button>
-                            <button class="action-answer _3bet-c-paint" value="iso-c">ISO-C</button>
+                            <button class="action-answer _3bet-c-paint" value="iso-c">ISO/C</button>
                             <button class="action-answer x-paint" value="x">CHECK</button>
                         </div>
                     </div>
@@ -180,6 +180,8 @@
     <script type="text/javascript" src="./data/3h-bb-btn-l-sb-iso.js"></script>
     <script type="text/javascript" src="./data/3h-bb-btn-l-sb-c.js"></script>
     <script type="text/javascript" src="./data/3h-bb-btn-mr.js"></script>
+    <script type="text/javascript" src="./data/3h-bb-btn-mr-sb-3bet.js"></script>
+    <script type="text/javascript" src="./data/3h-bb-btn-mr-sb-c.js"></script>
     <script type="text/javascript" src="./data/hu-sb.js"></script>
     <script>
 
@@ -231,7 +233,7 @@
 
         function getDataFile() {
             const position = playerPosition();
-            const btn = btnAction();
+            const btn = btnAction();    
             const sb = sbAction();
             return `hands_${getTable()}_${position}${btn}${sb}_${getStack()}`;
         }
@@ -264,6 +266,7 @@
                 Array.from(document.getElementsByClassName("actions-selector-container")).forEach(el => el.classList.add("hidden"))
                 const selector = `config-selector-${getTable()}`
                 document.getElementById(selector).classList.remove("hidden");
+
                 reloadMatrix();
             });
         });

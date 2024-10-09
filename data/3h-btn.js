@@ -47,7 +47,7 @@ const hands_3h_btn_25 = new Map([
     ["J8s", "mr-f-f"],
     ["J7s", "mr-f-f"],
     ["J6s", "mr-f-f"],
-    ["J5s", "f"],
+    ["J5s", "mr-f-f"],
     ["J4s", "f"],
     ["J3s", "f"],
     ["J2s", "f"],

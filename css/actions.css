@@ -69,7 +69,7 @@
 
 #hand {
     cursor: pointer;
-    margin: 1em 0 0 0;
+    margin: 0.5em 0 0 0;
     font-size: xx-large;
     margin-left: 3em;
     border-radius: 3px;
@@ -100,7 +100,7 @@
 }
 
 #question-container {
-    margin-top: 2em;
+    margin-top: 1em;
     width: 250px;
 }
 
@@ -134,7 +134,7 @@
     }
 
     #hand {
-        margin: 1em auto;
+        margin: 0.5em auto;
         display: flex;
         align-items: center;
         justify-items: center;

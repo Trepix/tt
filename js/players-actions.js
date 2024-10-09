@@ -49,12 +49,16 @@ sb3HActions.forEach(option => {
 const playerHUPositions = document.querySelectorAll("#player-hu-position .option");
 playerHUPositions.forEach(option => {
     option.addEventListener("click", () => {
+
+        if (sbActionKey() != undefined) hideFilter(sbActionKey());
+
         playerHUPositions.forEach(o => o.classList.remove("active"));
         option.classList.add("active");
 
-        resetFilter(sbActionKey());
+        resetFilter("sb-hu")
+        
         if (option.getAttribute("value") == "sb") {
-            hideFilter(sbActionKey());
+            hideFilter("sb-hu");
             reloadMatrix();
         }
         
@@ -66,6 +70,7 @@ sbHUActions.forEach(option => {
     option.addEventListener("click", () => {
         sbHUActions.forEach(o => o.classList.remove("active"));
         option.classList.add("active");
+        reloadMatrix();
     });
 });
 
@@ -127,7 +132,7 @@ function selectorActionValue(actionSelectorId) {
 }
 
 function btnAction() {
-    const action = selectorActionValue("#btn-3h-action");
+    const action = getTable() == '3h' ? selectorActionValue("#btn-3h-action") : undefined;
     return asVarName(action, 'btn');
 }
 

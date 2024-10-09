@@ -70,12 +70,14 @@ function getAnswerContainer(group) {
 
 function groupSimilarActions(group) {
     switch (group) {
-        case "bb-btn-l":
-        case "bb-btn-l-sb-c":
-            return "bb-sb-l"
-        case "bb-btn-l-sb-iso":
-        case "bb-btn-mr":
-            return "sb-btn-mr"
+        case "3h-bb-btn-l":
+        case "3h-bb-btn-l-sb-c":
+            return "3h-bb-sb-l"
+        case "3h-bb-btn-l-sb-iso":
+        case "3h-bb-btn-mr":
+        case "3h-bb-btn-mr-sb-3bet":
+        case "3h-bb-btn-mr-sb-c":
+            return "3h-sb-btn-mr"
         default:
             return group;
     }
@@ -85,7 +87,7 @@ function reloadQuestionContainer() {
     const answers = document.querySelectorAll(`[id$="actions-answer-container"]`);
     answers.forEach(a => a.classList.add("hidden"));
 
-    const group = getDataFile().split('_').slice(2, -1).join("-");
+    const group = getDataFile().split('_').slice(1, -1).join("-");
     const similarGroup = groupSimilarActions(group);
 
     const container = getAnswerContainer(similarGroup);
