@@ -98,36 +98,57 @@
             </div>
             <div id="question-container">
                 <div id="hand"></div>
-                <div id="complete-actions-container" class="actions-container">
-                    <div class="actions-group">
-                        <button class="action-answer os-paint" id="os">OS</button>
-                        <button class="action-answer mr-4b-c-paint" id="mr-4b-c">MR/4B/C</button>
-                        <button class="action-answer mr-c-c-paint" id="mr-c-c">MR/C/C</button>
-                        <button class="action-answer mr-c-f-paint" id="mr-c-f">MR/C/F</button>
-                        <button class="action-answer mr-f-f-paint" id="mr-f-f">MR/F/F</button>
+                <div id="actions">
+
+                    <div id="complete-actions-answer-container" class="actions-answer-container">
+                        <div class="actions-group">
+                            <button class="action-answer os-paint" value="os">OS</button>
+                            <button class="action-answer mr-4b-c-paint" value="mr-4b-c">MR/4B/C</button>
+                            <button class="action-answer mr-c-c-paint" value="mr-c-c">MR/C/C</button>
+                            <button class="action-answer mr-c-f-paint" value="mr-c-f">MR/C/F</button>
+                            <button class="action-answer mr-f-f-paint" value="mr-f-f">MR/F/F</button>
+                        </div>
+                        <div class="actions-group">
+                            <button class="action-answer l-push-paint" value="l-push">L/Push</button>
+                            <button class="action-answer l-c-c-paint" value="l-c-c">L/C/C</button>
+                            <button class="action-answer l-c-f-paint" value="l-c-f">L/C/F</button>
+                            <button class="action-answer l-f-paint" value="l-f">L/F</button>
+                        </div>
+                        <div class="actions-group">
+                            <button class="action-answer f-paint" style="color: black" value="f">Fold</button>
+                        </div>
                     </div>
-                    <div class="actions-group">
-                        <button class="action-answer l-push-paint" id="l-push">L/Push</button>
-                        <button class="action-answer l-c-c-paint" id="l-c-c">L/C/C</button>
-                        <button class="action-answer l-c-f-paint" id="l-c-f">L/C/F</button>
-                        <button class="action-answer l-f-paint" id="l-f">L/F</button>
+                    <div id="sb-btn-mr-actions-answer-container" class="actions-answer-container hidden">
+                        <div class="actions-group">
+                            <button class="action-answer all-in-paint" value="all-in">All In</button>
+                            <button class="action-answer iso-c-paint" value="iso-c">3BET/C</button>
+                            <button class="action-answer c-paint" value="c">CALL</button>
+                        </div>
+                        <div class="actions-group">
+                            <button class="action-answer f-paint" style="color: black" value="f">Fold</button>
+                        </div>
                     </div>
-                    <div class="actions-group">
-                        <button class="action-answer f-paint" style="color: black" id="f">Fold</button>
+                    <div id="sb-btn-l-actions-answer-container" class="actions-answer-container hidden">
+                        <div class="actions-group">
+                            <button class="action-answer all-in-paint" value="all-in">All In</button>
+                            <button class="action-answer iso-c-paint" value="iso-c">ISO/C</button>
+                            <button class="action-answer iso-f-paint" value="iso-f">ISO/F</button>
+                            <button class="action-answer c-paint" value="l">LIMP</button>
+                        </div>
+                        <div class="actions-group">
+                            <button class="action-answer f-paint" style="color: black" value="f">Fold</button>
+                        </div>
                     </div>
-                </div>
-                <div id="simplified-actions-container" class="actions-container" style="display: none;">
-                    <div class="actions-group">
-                        <button class="action-answer os-paint" id="all-in">All In</button>
-                        <button class="action-answer mr-4b-c-paint" id="iso-c">3B/CALL</button>
-                        <button class="action-answer mr-c-c-paint" id="c">CALL</button>
-                    </div>
-                    <div class="actions-group">
-                        <button class="action-answer l-push-paint" id="iso-f">MR/F</button>
-                        <button class="action-answer l-c-c-paint" id="call-x2">CALL vs x2</button>
-                    </div>
-                    <div class="actions-group">
-                        <button class="action-answer f-paint" style="color: black" id="f">Fold</button>
+                    <div id="bb-sb-mr-actions-answer-container" class="actions-answer-container hidden">
+                        <div class="actions-group">
+                            <button class="action-answer all-in-paint" value="all-in">All In</button>
+                            <button class="action-answer iso-c-paint" value="iso-c">3BET/C</button>
+                            <button class="action-answer iso-f-paint" value="c">CALL</button>
+                            <button class="action-answer c-paint" value="l">CALL x2</button>
+                        </div>
+                        <div class="actions-group">
+                            <button class="action-answer f-paint" style="color: black" value="f">Fold</button>
+                        </div>
                     </div>
                 </div>
                 <div id="all-table-actions">
@@ -144,6 +165,10 @@
     <!-- JSON para definir los colores de las combinaciones -->
     <script type="text/javascript" src="./data/3h-btn.js"></script>
     <script type="text/javascript" src="./data/3h-sb-bb.js"></script>
+    <script type="text/javascript" src="./data/3h-sb-btn-mr.js"></script>
+    <script type="text/javascript" src="./data/3h-sb-btn-l.js"></script>
+    <script type="text/javascript" src="./data/3h-bb-sb-l.js"></script>
+    <script type="text/javascript" src="./data/3h-bb-sb-mr.js"></script>
     <script type="text/javascript" src="./data/hu-sb.js"></script>
     <script>
 
@@ -179,12 +204,17 @@
             return document.getElementById("table-toggle").checked ? "hu" : "3h";
         }
 
-        function reloadMatrix() {
+        function reloadPreflopTable() {
             try {
                 preflopTable = eval(getDataFile());
             } catch (e) {
                 console.log(getDataFile() + " table does not exist");
             }
+            reloadQuestionContainer();
+        }
+
+        function reloadMatrix() {
+            reloadPreflopTable();
             repaint();
         }
 
@@ -194,8 +224,6 @@
             const sb = sbAction();
             return `hands_${getTable()}_${position}${btn}${sb}_${getStack()}`;
         }
-
-
 
 
         document.addEventListener('DOMContentLoaded', function () {

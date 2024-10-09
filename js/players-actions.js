@@ -78,7 +78,6 @@ function showFilter(name) {
 function hideFilter(name) {
     const container = containerId(name);
     const containerElement = document.getElementById(container);
-    console.log(`$${name}$`);
     containerElement.classList.add("hidden");
     clearFilter(actionId(name)); 
 }

@@ -52,14 +52,31 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-document.getElementById('hand').innerText = generateHand()
+function getAnswerContainer(group) {
+    return document.getElementById(`${group}-actions-answer-container`);
+}
+
+function reloadQuestionContainer() {
+    const answers = document.querySelectorAll(`[id$="actions-answer-container"]`);
+    answers.forEach(a => a.classList.add("hidden"));
+    
+    const group = getDataFile().split('_').slice(2,-1).join("-")
+    const container = getAnswerContainer(group)
+
+    if (container != undefined) {
+        container.classList.remove("hidden");
+    }
+    else getAnswerContainer("complete").classList.remove("hidden");
+};
+
+document.getElementById('hand').innerText = generateHand();
 document.getElementById('hand').addEventListener('click', (e) => {
     restartToNewQuestion()
-})
+});
 
 Array.from(document.getElementsByClassName('action-answer')).forEach(function (element) {
     element.addEventListener('click', (e) => {
         showAll();
-        isCorrectAnswer(e.target.id == preflopTable.get(hand.innerText))
+        isCorrectAnswer(e.target.getAttribute('value') == preflopTable.get(hand.innerText))
     })
 });

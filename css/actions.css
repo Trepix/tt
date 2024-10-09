@@ -39,6 +39,23 @@
     background-color: transparent;
 }
 
+.all-in-paint {
+    background-color: #b480dd;
+}
+
+.l-paint,
+.c-paint {
+    background-color: #3bd385;
+}
+
+.iso-c-paint {
+    background-color: #ffb800;
+}
+
+.iso-f-paint {
+    background-color: #f6f780;
+}
+
 .action-answer {
     width: 5.5em;
     border-width: 1px;
@@ -84,7 +101,7 @@
     width: 250px;
 }
 
-.actions-container {
+.actions-answer-container {
     display: flex;
     gap: 10px;
     margin-top: 2em;
