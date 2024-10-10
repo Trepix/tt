@@ -32,3 +32,37 @@
     box-shadow: inset 0px 0px 0px 4px black;
     opacity: 1;
 }
+
+
+@media (max-width: 768px) {
+
+    body {
+        font-size: 1em;
+        overflow: hidden;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .container {
+        display: block;   
+    }
+
+    .matrix {
+        font-family: revert-layer;
+        display: grid;
+    }
+
+    .card-cell {
+        -webkit-text-size-adjust: none;
+        font-weight: normal;
+        font-size: medium;
+    }
+
+    #all-table-actions {
+        margin-top: 1em;
+        display: flex;
+    }
+
+}

@@ -178,10 +178,6 @@
         margin: 0 0.5em;
     }
 
-    #clear-all,#print-all {
-        display: none;
-    }
-
     #mobile-actions-footer {
         width: 95%;
     }

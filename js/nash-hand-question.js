@@ -11,7 +11,6 @@ function paintHand() {
     const isPair = isPairedHand(document.getElementById("hand").innerText);
     Array.from(document.querySelectorAll(`${config.all_active_container_answer_selector}`))
     .forEach(el => {
-        console.log(`isPair: ${isPair}   value: ${el.value}`);
         const handColor = isPair && el.value == 20 ? getBBColorByHand(hand) :  getBBColorByStack(el.value);
         el.style.backgroundColor = handColor; 
     });

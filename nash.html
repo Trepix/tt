@@ -42,9 +42,17 @@
 
         let nashTable = nashPush;
 
+        function minimizeIfNeeded(value) {
+            if (window.innerWidth <= 768) {
+                if (value >= 10) return Math.round(value);
+                else return value;
+            }
+            return value;
+        }
+
         function show(cell) {
             cell.classList.add("paint");
-            cell.innerText = nashTable.get(cell.id)
+            cell.innerText = minimizeIfNeeded(nashTable.get(cell.id));
         }
 
         function clear(cell) {
