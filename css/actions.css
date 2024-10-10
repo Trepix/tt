@@ -68,25 +68,19 @@
 }
 
 #hand {
+    display: flex;
+    justify-content: center;
     cursor: pointer;
     margin: 0.5em 0 0 0;
     font-size: xx-large;
     margin-left: 3em;
     border-radius: 3px;
-    width: max-content;
+    width: 1.5em;
     padding: 0.25em 0.5em;
     color: black !important;
     opacity: 0.8;
 }
 
-.wrong-answer {
-    box-shadow: 0px 0px 0px 3px red;
-}
-
-.correct-answer {
-    box-shadow: 0px 0px 0px 3px #74C25F;
-
-}
 
 .matrix:has(.selected) *:not(.selected) {
     opacity: 0.5;
@@ -124,6 +118,33 @@
 #show-table {
     display: none;
 }
+
+.non-selected-answer {
+    opacity: 0.6;
+}
+
+.wrong-answer-frame {
+    border: none;
+    box-shadow: inset 0px 0px 0px 3px red;
+}
+
+.correct-answer-frame {
+    border: none;
+    box-shadow: inset 0px 0px 0px 4px #74C25F;
+}
+
+.correct-answer {
+    font-weight: bold;
+    box-shadow: inset 0px 0px 0px 2px black;
+    opacity: 1;
+}
+
+.wrong-answer {
+    border: none;
+    font-weight: normal;
+    box-shadow: inset 0px 0px 0px 2px red;
+}
+
 
 @media (max-width: 768px) {
     #question-container {
@@ -171,7 +192,7 @@
         width: 40%;
         height: 3em;
         margin: auto;
-        margin-top: 3em;
+        margin-top: 2em;
     }
 
     #all-table-actions {

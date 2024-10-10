@@ -5,97 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matriz de Combinaciones de Cartas</title>
-
-    <style>
-        body {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: auto 100px;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .grid-table {
-            display: grid;
-            grid-template-columns: repeat(5, 100px);
-            /* Ejemplo de una tabla de 5 columnas */
-            gap: 10px;
-            background-color: #f1f1f1;
-            padding: 10px;
-        }
-
-        .study-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            /* Espacio entre los botones */
-        }
-
-        .title {
-            text-align: center;
-        }
-
-        .matrix {
-            display: grid;
-            grid-template-columns: repeat(13, 1fr);
-            gap: 1px;
-            /* Espacio uniforme entre filas y columnas */
-            margin: auto;
-            margin-top: 20px;
-            width: 700px;
-        }
-
-        .card-cell {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #ddd;
-            background-color: white;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .suited,
-        .offsuit,
-        .pair {
-            background-color: white;
-            /* Se mantiene blanco hasta hacer clic */
-        }
-
-        .paint {
-            background-color: var(--background-color);
-            font-weight: bold;
-        }
-
-        #hand {
-            cursor: pointer;
-            user-select: none;
-            margin-bottom: 0em;
-        }
-    </style>
 </head>
 
 <body>
 
     <div>
-        <h1 class="title">Matriz de Combinaciones de Cartas</h1>
         <div class="container">
             <div class="matrix" id="card-matrix"></div>
             <div class="study-container">
-                <p id="hand"></p>
-                <button id="show-hand">solve</button>
-                <div></div>
-                <div></div>
-                <button id="clear-all">clear</button>
-                <button id="print-all">show</button>
+                <div id="question-container">
+                    <div id="hand"></div>
+                    <div id="stack-answers-container">
+                        <div class="stack-answers-group">
+                            <button id="stack-answer-1" class="stack-answer"></button>
+                            <button id="stack-answer-2" class="stack-answer"></button>
+                        </div>
+                        <div class="stack-answers-group">
+                            <button id="stack-answer-3" class="stack-answer"></button>
+                            <button id="stack-answer-4" class="stack-answer"></button>
+                        </div>
+                    </div>
+                    <div id="all-table-actions">
+                        <button id="clear-all">Reset</button>
+                        <button id="print-all">Show</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -105,16 +39,21 @@
     <script type="text/javascript" src="./data/nash/push.js"></script>
     <script>
 
-
+        let nashTable = nashPush;
 
         function show(cell) {
             cell.classList.add("paint");
-            cell.innerText = nashPush.get(cell.id)
+            cell.innerText = nashTable.get(cell.id)
         }
 
         function clear(cell) {
             cell.classList.remove("paint");
             cell.innerText = text(cell.id)
+        }
+
+
+        function clearAction(element) {
+            clear(element);
         }
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -129,12 +68,12 @@
             }
 
             function generateMatrix() {
-                nashPush.forEach((action, hand) => {
+                nashTable.forEach((action, hand) => {
                     const cell = document.createElement('div');
                     cell.classList.add('card-cell');
                     cell.id = hand;
                     cell.innerText = text(hand)
-                    const color = hand == text(hand) ? "lightblue" : getBBColor(nashPush.get(cell.id))
+                    const color = hand == text(hand) ? "lightblue" : getBBColor(nashTable.get(cell.id))
                     cell.style.setProperty("--background-color", color)
 
                     cardMatrix.appendChild(cell);
@@ -144,24 +83,14 @@
 
             generateMatrix();
 
-            document.getElementById('hand').innerText = generateHand()
-
-            document.getElementById('hand').addEventListener('click', (e) => {
-                clear(document.getElementById(e.target.innerText))
-                document.getElementById('hand').innerText = generateHand()
-            })
-
-            document.getElementById('show-hand').addEventListener('click', (e) => {
-                clearAll();
-                show(document.getElementById(document.getElementById('hand').innerText))
-            });
-
-
         });
     </script>
-    <script type="text/javascript" src="./cards.js"></script>
-    <script type="text/javascript" src="./paint-matrix.js"></script>
-
+    <script type="text/javascript" src="./js/cards.js"></script>
+    <script type="text/javascript" src="./js/paint-matrix.js"></script>
+    <script type="text/javascript" src="./js/nash-hand-question.js"></script>
+    <link rel="stylesheet" href="./css/matrix.css">
+    <link rel="stylesheet" href="./css/actions.css">
+    <link rel="stylesheet" href="./css/nash.css">
 </body>
 
 </html>

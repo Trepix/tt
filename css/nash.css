@@ -1,0 +1,27 @@
+.paint {
+    background-color: var(--background-color);
+    font-weight: bold;
+}
+
+#hand {
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 0em;
+}
+
+#stack-answers-container {
+    padding: 1.5em 1em 0.5em 1em;
+}
+
+.stack-answers-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.stack-answer {
+    width: 4em;
+    height: 2em;
+    margin: auto;
+    font-size: large;
+}
