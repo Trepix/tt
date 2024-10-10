@@ -1,53 +1,23 @@
-function isCorrectAnswer(answerElement) {
-    const hand = document.getElementById('hand')
-    const isCorrect = answerElement.getAttribute('value') == preflopTable.get(hand.innerText)
-    document.getElementById(hand.innerText).classList.add("selected")
-    hand.classList.add(paintClass(preflopTable.get(hand.innerText)));
-
-    const correctAction = preflopTable.get(hand.innerText);
-    Array.from(document.querySelectorAll(`.actions-answer-container:not(.hidden) .action-answer[value=${correctAction}]`))[0]
-        .classList.add("correct-answer")
-
-    if (isCorrect) {
-        hand.classList.add("correct-answer-frame")
-    }
-    else {
-        hand.classList.add("wrong-answer-frame")
-        answerElement.classList.add("wrong-answer");
-    }
+const config = {
+    all_active_container_answer_selector: ".actions-answer-container:not(.hidden) .action-answer",
+    answer_class: "action-answer",
+    getTable : function() { return preflopTable }
 }
 
-function newQuestion() {
-    const handElement = document.getElementById('hand')
-    document.getElementById(hand.innerText).classList.remove("selected")
+function paintHand() {
+    const hand = document.getElementById('hand');
+    hand.classList.add(paintClass(preflopTable.get(hand.innerText)));
+}
 
-    restoreAnswersApparence();
-
-    clearAction(handElement);
-    handElement.classList.remove("wrong-answer-frame", "correct-answer-frame")
-    handElement.innerText = generateHand()
+function clearHandPaint() {
+    const hand = document.getElementById('hand');
+    clearAction(hand);
 }
 
 function restartToNewQuestion() {
     clearAll();
     newQuestion();
 }
-
-function reduceAnswersOpacity() {
-    const answers = Array.from(document.querySelectorAll(`.actions-answer-container:not(.hidden) .action-answer`));
-    answers.forEach(el => el.classList.add("non-selected-answer"))
-}
-
-function restoreAnswersApparence() {
-    const answers = Array.from(document.querySelectorAll(`.actions-answer-container:not(.hidden) .action-answer`));
-    answers.forEach(el => el.classList.remove("non-selected-answer", "correct-answer-frame", "wrong-answer-frame", "correct-answer","wrong-answer"));
-}
-
-function clickAnswer(value) {
-    const maybeElement = document.querySelectorAll(`.actions-answer-container:not(.hidden) .action-answer[value="${value}"]`);
-    if (maybeElement.length > 0) maybeElement[0].click();
-}
-
 
 document.addEventListener('keydown', function (event) {
     if (event.key === 'f' || event.key === 'F') {
@@ -116,27 +86,3 @@ function reloadQuestionContainer() {
     }
     else getAnswerContainer("complete").classList.remove("hidden");
 };
-
-function isAnswered() {
-    const handClasses = document.getElementById('hand').classList;
-    return handClasses.contains("correct-answer-frame") || handClasses.contains("wrong-answer-frame")
-}
-
-document.getElementById('hand').innerText = generateHand();
-document.getElementById('hand').addEventListener('click', (e) => {
-    restartToNewQuestion()
-});
-
-document.body.addEventListener('dblclick', (e) => {
-    if (isAnswered()) restartToNewQuestion()
-})
-
-Array.from(document.getElementsByClassName('action-answer')).forEach(function (element) {
-    element.addEventListener('click', (e) => {
-        if (!isAnswered()) {
-            showAll();
-            reduceAnswersOpacity();
-            isCorrectAnswer(e.target)
-        }
-    })
-});

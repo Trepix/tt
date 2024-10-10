@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
     <title>Matriz de Combinaciones de Cartas</title>
 </head>
 
@@ -12,10 +13,10 @@
     <div>
         <div class="container">
             <div class="matrix" id="card-matrix"></div>
-            <div class="study-container">
+            <div id="lateral-panel">
                 <div id="question-container">
                     <div id="hand"></div>
-                    <div id="stack-answers-container">
+                    <div class="stack-answers-container">
                         <div class="stack-answers-group">
                             <button id="stack-answer-1" class="stack-answer"></button>
                             <button id="stack-answer-2" class="stack-answer"></button>
@@ -56,24 +57,29 @@
             clear(element);
         }
 
+        function getBBColorByHand(hand) {
+            if (hand == text(hand)) return "lightblue";
+            return getBBColorByStack(nashTable.get(hand));
+        }
+
+        function getBBColorByStack(bbValue) {
+            // Asegurarnos de que el valor esté entre 1 y 20
+            if (bbValue >= 19.9) return 'hsl(120, 50%, 50%)'
+            // if (bbValue >= 19) return `hsl(${bbValue * 4.5},60%, 60%)`
+            // if (bbValue >= 16) return `hsl(${bbValue * 3.5},60%, 60%)`
+            // if (bbValue >= 10) return `hsl(${bbValue * 3},60%, 60%)`
+            return `hsl(${bbValue * 4},70%, 60%)`
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const cardMatrix = document.getElementById('card-matrix');
-            function getBBColor(bbValue) {
-                // Asegurarnos de que el valor esté entre 1 y 20
-                if (bbValue >= 19.9) return 'hsl(120, 50%, 50%)'
-                // if (bbValue >= 19) return `hsl(${bbValue * 4.5},60%, 60%)`
-                // if (bbValue >= 16) return `hsl(${bbValue * 3.5},60%, 60%)`
-                // if (bbValue >= 10) return `hsl(${bbValue * 3},60%, 60%)`
-                return `hsl(${bbValue * 4},70%, 60%)`
-            }
-
             function generateMatrix() {
                 nashTable.forEach((action, hand) => {
                     const cell = document.createElement('div');
                     cell.classList.add('card-cell');
                     cell.id = hand;
                     cell.innerText = text(hand)
-                    const color = hand == text(hand) ? "lightblue" : getBBColor(nashTable.get(cell.id))
+                    const color = getBBColorByHand(hand);
                     cell.style.setProperty("--background-color", color)
 
                     cardMatrix.appendChild(cell);
@@ -88,6 +94,7 @@
     <script type="text/javascript" src="./js/cards.js"></script>
     <script type="text/javascript" src="./js/paint-matrix.js"></script>
     <script type="text/javascript" src="./js/nash-hand-question.js"></script>
+    <script type="text/javascript" src="./js/utils-hand-question.js"></script>
     <link rel="stylesheet" href="./css/matrix.css">
     <link rel="stylesheet" href="./css/actions.css">
     <link rel="stylesheet" href="./css/nash.css">

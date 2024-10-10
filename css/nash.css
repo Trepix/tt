@@ -9,7 +9,7 @@
     margin-bottom: 0em;
 }
 
-#stack-answers-container {
+.stack-answers-container {
     padding: 1.5em 1em 0.5em 1em;
 }
 
@@ -24,4 +24,11 @@
     height: 2em;
     margin: auto;
     font-size: large;
+}
+
+
+.correct-answer {
+    font-weight: bold;
+    box-shadow: inset 0px 0px 0px 4px black;
+    opacity: 1;
 }
