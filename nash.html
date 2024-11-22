@@ -9,32 +9,43 @@
 </head>
 
 <body>
-
     <div>
-        <div class="container">
-            <div class="matrix" id="card-matrix"></div>
-            <div id="lateral-panel">
-                <div id="question-container">
-                    <div id="hand"></div>
-                    <div class="stack-answers-container">
-                        <div class="stack-answers-group">
-                            <button id="stack-answer-1" class="stack-answer"></button>
-                            <button id="stack-answer-2" class="stack-answer"></button>
-                        </div>
-                        <div class="stack-answers-group">
-                            <button id="stack-answer-3" class="stack-answer"></button>
-                            <button id="stack-answer-4" class="stack-answer"></button>
-                        </div>
+        <h1 class="title">Nash equilibrium</h1>
+    </div>
+
+    <div class="container">
+        <div class="matrix" id="card-matrix"></div>
+        <div id="lateral-panel">
+            <div id="question-container">
+                <div id="hand"></div>
+                <div class="stack-answers-container">
+                    <div class="stack-answers-group">
+                        <button id="stack-answer-1" class="stack-answer"></button>
+                        <button id="stack-answer-2" class="stack-answer"></button>
                     </div>
-                    <div id="all-table-actions">
-                        <button id="clear-all">Reset</button>
-                        <button id="print-all">Show</button>
+                    <div class="stack-answers-group">
+                        <button id="stack-answer-3" class="stack-answer"></button>
+                        <button id="stack-answer-4" class="stack-answer"></button>
                     </div>
                 </div>
             </div>
+            <div id="config-container">
+                <div class="config-selector" class="lateral-panel-block">
+                    <select id="position" class="selector">
+                        <option value="call">Push</option>
+                        <option value="push">Call</option>
+                        <option value="3h-bb-3way">3H BB 3way</option>
+                        <option value="3h-bb-btn">3H BB Call vs BTN </option>
+                        <option value="3h-bb-push">3H BB Push vs BTN</option>
+                        <option value="3h-sb-call">3H SB Call </option>
+                    </select>
+                </div>
+                <div id="all-table-actions">
+                    <button id="clear-all">Reset</button>
+                    <button id="print-all">Show</button>
+                </div>
+            </div>
         </div>
-
-
     </div>
 
     <script type="text/javascript" src="./data/nash/push.js"></script>

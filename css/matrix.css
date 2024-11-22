@@ -38,117 +38,6 @@ body {
     user-select: none;
 }
 
-#lateral-panel {
-    margin-left: 2em;
-    height: 100%;
-    margin-top: 20px;
-    padding-top: 1em;
-    width: 350px;
-}
-
-.lateral-panel-block {
-    display: flex;
-}
-
-/* study */
-#clear-all {
-    margin-right: 2em;
-}
-
-
-/* config selecotrs */
-.bb-selector {
-    margin-left: 2em;
-}
-
-.table-toggle-container {
-    display: flex;
-    float: left;
-    /* margin-right: 8em; */
-}
-
-.table-name {
-    padding: 5px;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-}
-
-.toggle {
-    background: #eee;
-    width: 2.5em;
-    height: 1em;
-    padding: 5px;
-    border-radius: 50px;
-}
-
-label {
-    width: 1em;
-    height: 1em;
-    background: #00b38f;
-    display: flex;
-    cursor: pointer;
-    border-radius: 50px;
-    transition: all 0.25s ease 0s;
-}
-
-input {
-    display: none;
-}
-
-input:checked+label {
-    margin-left: 1.5em;
-}
-
-.selector {
-    padding: 0.25em;
-
-}
-
-.hidden {
-    display: none !important;
-}
-
-.actions-selector-container {
-    display: flex;
-    height: 9.5em;
-}
-
-.position {
-    margin-bottom: 0.25em;
-    margin-left: 1em;
-}
-
-
-.actions-selector-container > .action-selector:not(.hidden):not(:last-child) {
-    margin-right: 1em; 
-}
-
-
-.menu  {
-    display: inline-block;
-    padding: 5px 5px 5px 10px;
-    border-radius: 10px;
-    background-color: #eee;
-    width: 4em;
-}
-
-
-.option {
-    margin: 10px 0;
-    padding: 0 10px;
-    cursor: pointer;
-}
-
-.sub-menu {
-    width: 6em;
-}
-
-.active {
-    display: block;
-    background-color: #00b38f;
-    border-radius: 5px;
-}
-
 @media (max-width: 768px) {
 
     body {
@@ -168,34 +57,9 @@ input:checked+label {
         display: flex;   
     }
 
-    #lateral-panel {
-        margin: auto;
-        width: 100%;
-        justify-items: center;
-    }
-
-    #actions-config {
-        max-width: 21em;
-        overflow: hidden;
-        margin: auto;
-    }
-
-    #situation-config {
-        max-width: 21em;
-        overflow: hidden;
-        margin: auto;
-        margin-bottom: 1em;
-    }
-
     .card-cell {
         width: calc(96vw / 13);
         height: calc(96vw / 13);
         border: none;
     }
-
-    .bb-selector {
-        height: 2em;
-    }
-    
-
 }

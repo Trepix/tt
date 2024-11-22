@@ -61,7 +61,7 @@
 
 .stack-answer,
 .action-answer {
-    width: 5.5em;
+    width: 80%;
     border-width: 1px;
     height: 2em;
     margin-bottom: 0.75em;
@@ -74,7 +74,6 @@
     cursor: pointer;
     margin: 0.5em 0 0 0;
     font-size: xx-large;
-    margin-left: 3em;
     border-radius: 3px;
     width: 1.5em;
     padding: 0.15em 0.25em;
@@ -96,7 +95,9 @@
 
 #question-container {
     margin-top: 1em;
-    width: 250px;
+    width: 100%;
+    justify-items: center;
+
 }
 
 .actions-answer-container {
@@ -106,7 +107,11 @@
 }
 
 .actions-group {
-    width: 33%;
+    width: 50%;
+}
+
+#actions {
+    width: 80%;
 }
 
 #all-table-actions {
@@ -166,6 +171,7 @@
     .stack-answer,
     .action-answer {
         width: 100%;
+        min-width: 5.5em;
         border-width: 1px;
         height: 2em;
         margin-bottom: 0.75em;
@@ -174,12 +180,16 @@
         color: black;
     }
 
+    .actions-answer-container {
+        justify-content: center;
+    }
+
     .actions-group {
         margin: 0 0.5em;
     }
 
     #mobile-actions-footer {
-        width: 95%;
+        width: 100%;
     }
 
     .selected {

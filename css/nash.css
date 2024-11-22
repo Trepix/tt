@@ -9,6 +9,21 @@
     margin-bottom: 0em;
 }
 
+#config-container {
+    justify-items: center;
+}
+
+
+#lateral-panel {
+    margin-left: 2em;
+    height: 100%;
+    margin-top: 20px;
+    padding-top: 1em;
+    width: fit-content;
+    align-content: center;
+}
+
+
 .stack-answers-container {
     padding: 1.5em 1em 0.5em 1em;
 }
@@ -29,8 +44,16 @@
 
 .correct-answer {
     font-weight: bold;
-    box-shadow: inset 0px 0px 0px 4px black;
+    box-shadow: inset 0px 0px 0px 2px black;
     opacity: 1;
+}
+
+.selector {
+    padding: 0.25em;
+}
+
+#clear-all {
+    margin-right: 2em;
 }
 
 
@@ -64,5 +87,16 @@
         margin-top: 1em;
         display: flex;
     }
+
+    
+    #lateral-panel {
+        margin: auto;
+        width: 100%;
+        justify-items: center;
+        margin-top: 0em;
+    }
+
+
+    
 
 }
