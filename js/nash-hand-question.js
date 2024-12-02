@@ -7,8 +7,8 @@ const config = {
 function isPairedHand(hand) { return hand == text(hand); }
 
 function paintHand() {
-    const hand = document.getElementById("hand").innerText
-    const isPair = isPairedHand(document.getElementById("hand").innerText);
+    const hand = document.getElementById('hand').innerText
+    const isPair = isPairedHand(document.getElementById('hand').innerText);
     Array.from(document.querySelectorAll(`${config.all_active_container_answer_selector}`))
     .forEach(el => {
         const handColor = isPair && el.value == 20 ? getBBColorByHand(hand) :  getBBColorByStack(el.value);

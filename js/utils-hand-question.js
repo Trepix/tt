@@ -1,11 +1,17 @@
+
+const handElement = document.getElementById('hand')
+
+function handValue() {
+    return handElement.getAttribute("value")
+}
+
 function isCorrectAnswer(answerElement) {
     const table = config.getTable();
-    const hand = document.getElementById('hand')
-    const isCorrect = answerElement.getAttribute('value') == table.get(hand.innerText)
-    document.getElementById(hand.innerText).classList.add("selected")
+    const isCorrect = answerElement.getAttribute('value') == table.get(handValue())
+    document.getElementById(handValue()).classList.add("selected")
     paintHand();
 
-    const correctAction = table.get(hand.innerText);
+    const correctAction = table.get(handValue());
     Array.from(document.querySelectorAll(`${config.all_active_container_answer_selector}[value="${correctAction}"]`))[0]
         .classList.add("correct-answer")
 
@@ -24,16 +30,22 @@ function clickAnswer(value) {
 }
 
 function newQuestion() {
-    const handElement = document.getElementById('hand')
-    document.getElementById(hand.innerText).classList.remove("selected")
+    document.getElementById(handValue()).classList.remove("selected")
 
     restoreAnswersApparence();
 
     clearHandPaint();
     handElement.classList.remove("wrong-answer-frame", "correct-answer-frame")
-    handElement.innerText = generateHand()
-    return handElement.innerText;
+    return newHand();
 }
+
+function newHand() {
+    const hand = generateHand()
+    handElement.innerText = hand[0].asText() + hand[1].asText();
+    handElement.setAttribute("value", notationFrom(hand));    
+    return hand;
+}
+
 
 function reduceAnswersOpacity() {
     const answers = Array.from(document.querySelectorAll(`${config.all_active_container_answer_selector}`));
@@ -46,17 +58,17 @@ function restoreAnswersApparence() {
 }
 
 function isAnswered() {
-    const handClasses = document.getElementById('hand').classList;
+    const handClasses = handElement.classList;
     return handClasses.contains("correct-answer-frame") || handClasses.contains("wrong-answer-frame")
 }
 
-document.getElementById('hand').innerText = generateHand();
-document.getElementById('hand').addEventListener('click', (e) => {
+newHand();
+
+handElement.addEventListener('click', (e) => {
     restartToNewQuestion()
 });
 
 document.body.addEventListener('dblclick', (e) => {
-    const handClasses = document.getElementById('hand').classList;
     if (isAnswered()) restartToNewQuestion()
 })
 

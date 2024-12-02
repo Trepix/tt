@@ -1,4 +1,4 @@
-const Suits = ["spades", "hearts", "clubs", "diamonds"]
+const Suits = ["♠️", "♥️", "♣️", "♦️"]
 const Values = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]
 
 function randomInteger(min, max) {
@@ -8,7 +8,7 @@ function randomInteger(min, max) {
 function generateCard() {
     const suit = Suits[randomInteger(0, Suits.length)]
     const value = Values[randomInteger(0, Values.length)]
-    return { "value": value, "suit": suit };
+    return { "value": value, "suit": suit, "asText": () => { return value + suit; } };
 }
 
 function generateHand() {
@@ -17,9 +17,14 @@ function generateHand() {
         secondCard = generateCard()
     } while (firstCard == secondCard)
 
+    return [firstCard, secondCard]
+}
+
+function notationFrom(hand) {
+    const firstCard = hand[0];
+    const secondCard = hand[1];
     const firstIndex = Values.findIndex(v => v == firstCard.value);
     const secondIndex = Values.findIndex(v => v == secondCard.value);
-
 
     if (firstIndex == secondIndex) return firstCard.value + secondCard.value
     const suited = firstCard.suit == secondCard.suit ? 's' : 'o'
