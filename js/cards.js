@@ -8,14 +8,21 @@ function randomInteger(min, max) {
 function generateCard() {
     const suit = Suits[randomInteger(0, Suits.length)]
     const value = Values[randomInteger(0, Values.length)]
-    return { "value": value, "suit": suit, "asText": () => { return value + suit; } };
+    return { 
+        "value": value, 
+        "suit": suit, 
+        "asText": () => { return value + suit; },
+        "equals": function(o) {
+            return this.value == o.value && this.suit == o.suit;
+        }
+    };
 }
 
 function generateHand() {
     const firstCard = generateCard();
     do {
         secondCard = generateCard()
-    } while (firstCard == secondCard)
+    } while (firstCard.equals(secondCard))
 
     return [firstCard, secondCard]
 }

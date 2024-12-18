@@ -72,7 +72,7 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
-    margin: 0.5em 0 0 0;
+    margin: 0.5em auto 0 auto;
     font-size: xx-large;
     border-radius: 3px;
     width: 3em;
@@ -112,6 +112,7 @@
 
 #actions {
     width: 80%;
+    margin: auto;
 }
 
 #all-table-actions {
