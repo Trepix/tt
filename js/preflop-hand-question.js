@@ -40,6 +40,16 @@ document.addEventListener('keydown', function (event) {
     if (event.key === 's' || event.key === 'S') {
         document.getElementById('print-all').click();
     }
+    if (event.key === 'ArrowUp') {
+        const limitFunc = (_s) => 0
+        const valueFunc = (limit, current) => Math.max(limit, current - 1)
+        changeOption(limitFunc, valueFunc);
+    }
+    if (event.key === 'ArrowDown') {
+        const limitFunc = (s) => s.options.length - 1
+        const valueFunc = (limit, current) => Math.min(limit, current + 1)
+        changeOption(limitFunc, valueFunc);
+    }
 
     if (event.key == " ") {
         event.preventDefault();
@@ -51,6 +61,15 @@ document.addEventListener('keydown', function (event) {
         document.body.dispatchEvent(doubleClickEvent);
     }
 });
+
+function changeOption(limitFunc, valueFunc) {
+    const selector = document.getElementById('stack-size');
+    const current = selector.selectedIndex;
+    const limit = limitFunc(selector);
+    const newValue = valueFunc(limit, current)
+    selector.selectedIndex = newValue;
+    selector.dispatchEvent(new Event('change'));
+}
 
 function getAnswerContainer(group) {
     return document.getElementById(`${group}-actions-answer-container`);
