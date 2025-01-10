@@ -374,7 +374,7 @@ const hands_3h_bb_btn_mr_15 = new Map([
     ["AQo", "all-in"],
     ["KQo", "all-in"],
     ["QQ", "_3bet-c"],
-    ["QJs", "all-in"],
+    ["QJs", "c"],
     ["QTs", "c"],
     ["Q9s", "c"],
     ["Q8s", "c"],
