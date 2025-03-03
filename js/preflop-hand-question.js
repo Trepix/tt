@@ -1,7 +1,7 @@
 const config = {
     all_active_container_answer_selector: ".actions-answer-container:not(.hidden) .action-answer",
     answer_class: "action-answer",
-    getTable : function() { return preflopTable }
+    getTable: function () { return preflopTable }
 }
 
 function paintHand() {
@@ -20,6 +20,12 @@ function restartToNewQuestion() {
 }
 
 document.addEventListener('keydown', function (event) {
+    if (event.key === '3') {
+        changeTable("3h")
+    }
+    if (event.key === 'h'  || event.key === 'H') {
+        changeTable("hu")
+    }
     if (event.key === 'f' || event.key === 'F') {
         clickAnswer("f");
     }
@@ -69,6 +75,14 @@ function changeOption(limitFunc, valueFunc) {
     const newValue = valueFunc(limit, current)
     selector.selectedIndex = newValue;
     selector.dispatchEvent(new Event('change'));
+}
+
+function changeTable(desired_table) {
+    // 'false' -> 3h    'true' -> hu
+    const selector = document.getElementById('table-toggle');
+    const current_table = selector.checked ? 'hu' : '3h'
+
+    if (desired_table != current_table) selector.click();
 }
 
 function getAnswerContainer(group) {
